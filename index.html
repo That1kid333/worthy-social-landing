@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worthy Social Club - Connect with Purpose</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            600: '#D4AF37',
+                            700: '#D4AF37'
+                        },
+                        'forward': {
+                            'background': '#0F0F0F',
+                            'text-primary': '#FFFFFF',
+                            'text-secondary': '#888888',
+                            'accent': '#D4AF37',
+                            'border': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fbfbfb;
+            color: #FFFFFF;
+        }
+        .bg-white {
+            background-color: #ffffff !important;
+            color: #FFFFFF;
+        }
+        .text-white {
+            color: #FFFFFF;
+        }
+        .text-gray-900 {
+            color: #FFFFFF;
+        }
+        .text-gray-600 {
+            color: #888888;
+        }
+        .text-gray-700 {
+            color: #888888;
+        }
+        .bg-gray-50 {
+            background-color: #888888 !important;
+        }
+        .bg-gray-100 {
+            background-color: #888888 !important;
+        }
+        .bg-gray-900 {
+            background-color: #0F0F0F;
+        }
+        .hover:bg-blue-50 {
+            background-color: #1F1F1F;
+        }
+        .hover:bg-blue-700 {
+            background-color: #D4AF37;
+        }
+        .bg-blue-600 {
+            background-color: #D4AF37;
+        }
+        .bg-blue-700 {
+            background-color: #D4AF37;
+        }
+        .border-color {
+            border-color: #1F1F1F;
+        }
+        .modal {
+            background-color: #1F1F1F !important;
+            color: #FFFFFF;
+        }
+        .modal-content {
+            background-color: #1F1F1F !important;
+            color: #FFFFFF;
+            border: 1px solid #D4AF37;
+        }
+        .bg-gray-50, .bg-gray-100 {
+            color: #FFFFFF !important;
+        }
+        .bg-gray-50 .text-gray-600, .bg-gray-100 .text-gray-600 {
+            color: #CCCCCC !important;
+        }
+        .text-blue-600 {
+            color: #D4AF37;
+        }
+        .text-blue-700 {
+            color: #D4AF37;
+        }
+        .border-blue-600 {
+            border-color: #D4AF37;
+        }
+        .hover\:bg-blue-50:hover {
+            background-color: #D4AF37;
+        }
+        
+        /* Replace all blue-related classes with gold */
+        .bg-blue-600, .bg-blue-700, 
+        .hover\:bg-blue-700, 
+        .hover\:bg-blue-600,
+        .text-blue-600, .text-blue-700,
+        .border-blue-600 {
+            background-color: #D4AF37 !important;
+            color: #0F0F0F !important;
+            border-color: #D4AF37 !important;
+        }
+
+        /* Specific button and interactive element styles */
+        a#requestInvitationLink {
+            background-color: #D4AF37 !important;
+            color: #0F0F0F !important;
+        }
+
+        /* Modal and other blue-related elements */
+        .modal-content {
+            border: 1px solid #D4AF37 !important;
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 500px;
+            height: 150px;
+            object-fit: contain;
+            max-height: 150px;
+            max-width: 500px;
+            object-position: left;
+        }
+
+        /* Header and navigation styling */
+        header {
+            background-color: #FFFFFF !important;
+            color: black !important;
+            box-shadow: none !important;
+            border-bottom: none !important;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px !important;
+            height: 125px;
+            overflow: hidden;
+        }
+        header nav a {
+            color: black !important;
+            text-decoration: none;
+        }
+        header nav a:hover {
+            color: #888888 !important;
+        }
+        #requestInvitationLink {
+            background-color: black !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+        #requestInvitationLink:hover {
+            background-color: #333333 !important;
+        }
+        header nav .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Form submission button styles */
+        button[type="submit"] {
+            background-color: #D4AF37 !important;
+            color: #0F0F0F !important;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #C0A030 !important;
+        }
+    </style>
+</head>
+<body class="font-body bg-forward-background text-forward-text-primary border-color">
+    <!-- Invitation Request Modal -->
+    <div id="invitationModal" class="modal">
+        <div class="modal-overlay" onclick="document.getElementById('invitationModal').style.display='none'"></div>
+        <div class="modal-content">
+            <img src="images/logo.png" alt="Worthy Social Club Logo" class="modal-logo">
+            <span class="close" onclick="document.getElementById('invitationModal').style.display='none'">&times;</span>
+            <h2 class="text-2xl font-bold-heading text-white mb-6 text-center">Request an Invitation</h2>
+            <form id="invitationForm" class="font-regular-body">
+                <div class="mb-4">
+                    <label for="name" class="block text-white mb-2">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-white mb-2">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your contact number">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-white mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Your email address" required>
+                </div>
+                <div class="mb-4">
+                    <label for="referral" class="block text-white mb-2">Who referred you?</label>
+                    <input type="text" id="referral" name="referral" placeholder="Name of referral (optional)">
+                </div>
+                <div class="mb-4">
+                    <label for="about" class="block text-white mb-2">Tell us a little about yourself</label>
+                    <textarea id="about" name="about" rows="3" placeholder="Share a bit about who you are" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="profession" class="block text-white mb-2">What do you do for a living?</label>
+                    <input type="text" id="profession" name="profession" placeholder="Your profession or occupation">
+                </div>
+                <div class="mb-4">
+                    <label for="skills" class="block text-white mb-2">Special Skills or Resources</label>
+                    <textarea id="skills" name="skills" rows="3" placeholder="Any skills like photography, décor, cooking, event space, etc."></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-yellow-600 text-black px-6 py-3 rounded-full hover:bg-yellow-500 transition font-semibold-button">Submit Invitation Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Co-Host Request Modal -->
+    <div id="coHostModal" class="modal">
+        <div class="modal-content">
+            <span class="close cursor-pointer text-2xl float-right" id="closeCoHostModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Become a Co-Host</h2>
+            <form id="coHostForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="coHostName">Full Name</label>
+                    <input type="text" id="coHostName" name="name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="coHostEmail">Email Address</label>
+                    <input type="email" id="coHostEmail" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="coHostContribution">How would you like to contribute?</label>
+                    <textarea id="coHostContribution" name="contribution" rows="4" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Submit Co-Host Request</button>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <section class="relative min-h-screen w-full overflow-hidden flex items-center">
+            <video 
+                src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline 
+                class="absolute top-0 left-0 w-full h-full object-cover"
+            >
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="text-center text-white max-w-2xl px-6">
+                    <div class="flex justify-center items-center h-full">
+                        <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto">
+                    </div>
+                    
+                    <p class="text-xl mb-4 font-semibold-tagline">People and places worthy of your time</p>
+                    
+                    <h3 class="text-3xl font-bold mb-4 font-bold-heading">We're club-ish.</h3>
+                    
+                    <div class="font-regular-body">
+                        <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
+                        
+                        <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
+                        
+                        <p>We'll start workshopping those handshakes asap.</p>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-center space-x-4">
+                        <a href="#upcoming-events" class="border border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition font-light-italic">View upcoming events</a>
+                        <a href="#" id="requestInvitationMainLink" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition font-semibold-button">Request Invitation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="upcoming-events" class="bg-black py-16">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-4xl font-bold mb-12 text-white font-bold-heading">Winter/Spring 2025 Events</h3>
+                <div class="mb-8">
+                    <p class="text-white font-semibold-button text-center">Please follow the links through Calendly to RSVP</p>
+                    <p class="text-white font-semibold-button text-center">ALL EVENTS REQUIRE AN RSVP</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Feb 14: Wine Exchange</h4>
+                            <p class="text-white">Take Home the One You Love - An intimate wine tasting event</p>
+                        </div>
+                        <p class="text-gray-500 italic">8:00pm @ 123 West Ridge Way, Roswell</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Feb 22: Babes Brunch</h4>
+                            <p class="text-white">Ladies Only Brunch Event</p>
+                        </div>
+                        <p class="text-gray-500 italic">12:00pm @ Le Bon Nosh</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/rock-band-karaoke', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Mar 8: Rock Band Karaoke</h4>
+                            <p class="text-white">Unleash your inner rockstar at Dark Horse Tavern</p>
+                        </div>
+                        <p class="text-gray-500 italic">9:00pm @ Dark Horse Tavern</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/corepower-yoga-sculpt-dinner-at-true-food-kitchen', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Mar 11: Yoga & Dinner</h4>
+                            <p class="text-white">CorePower Yoga followed by True Food Kitchen</p>
+                        </div>
+                        <p class="text-gray-500 italic">6:15pm @ CorePower Yoga Buckhead & True Food Kitchen</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch-1', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Mar 16: Babes Brunch</h4>
+                            <p class="text-white">Ladies Only Brunch Event</p>
+                        </div>
+                        <p class="text-gray-500 italic">Location TBA</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/family-dinner-a-la-bolognese', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Mar 30: Family Dinner</h4>
+                            <p class="text-white">Spaghetti Bolognese Gathering</p>
+                        </div>
+                        <p class="text-gray-500 italic">5:30pm @ 123 West Ridge Way, Roswell</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">April Wednesdays: Park Walks</h4>
+                            <p class="text-white">Weekly Walk at Chastain Park</p>
+                        </div>
+                        <p class="text-gray-500 italic">6:15pm @ Chastain Park (near The Chastain)</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Apr 5: Girls Night In</h4>
+                            <p class="text-white">Noir Night - Ladies Only</p>
+                        </div>
+                        <p class="text-gray-500 italic">7:30pm @ 99 West Paces</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">Apr 13: Dogwood Festival</h4>
+                            <p class="text-white">Piedmont Park's Annual Celebration</p>
+                        </div>
+                        <p class="text-gray-500 italic">1:30pm @ Piedmont Park (near Park Tavern)</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mt-8">
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/fiesta-feast', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">May 5: Cinco de Mayo</h4>
+                            <p class="text-white">Fiesta Celebration</p>
+                        </div>
+                        <p class="text-gray-500 italic">7:00pm @ Location TBD</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/pom-before-the-peel', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">May 16: Pom Before the Peel</h4>
+                            <p class="text-white">Evening at Hotel Granda and May Peel</p>
+                        </div>
+                        <p class="text-gray-500 italic">7:45pm @ Pom Court & Speakeasy</p>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline', '_blank')">
+                        <div class="mb-6">
+                            <h4 class="text-2xl font-semibold mb-2">May 25: BBBB Event</h4>
+                            <p class="text-white">Brunch, Bread, Butterflies & Beltline</p>
+                        </div>
+                        <p class="text-gray-500 italic">1:30pm @ Bread & Butterfly, then Beltline</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="#" id="coHostLink" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition font-semibold-button">Become a Co-Host</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white py-12 font-regular-body">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <img src="images/logo.png" alt="Worthy Social Club Logo" class="mx-auto mb-4 max-w-xs">
+            </div>
+            <div class="space-y-4">
+                <p> 2025 Worthy Social Club. All rights reserved.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-yellow-500 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-yellow-500 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const requestInvitationMainLink = document.getElementById('requestInvitationMainLink');
+            const invitationModal = document.getElementById('invitationModal');
+            const closeModalButtons = invitationModal.querySelectorAll('.close, .modal-overlay');
+            
+            requestInvitationMainLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                invitationModal.style.display = 'block';
+            });
+
+            // Close modal when clicking close button or overlay
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    invitationModal.style.display = 'none';
+                });
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && invitationModal.style.display === 'block') {
+                    invitationModal.style.display = 'none';
+                }
+            });
+
+            const invitationForm = document.getElementById('invitationForm');
+            invitationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(invitationForm);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Add form type
+                data.formType = 'invitation';
+
+                // Send data to webhook
+                fetch('https://hook.us1.make.com/0ciymzlu3n7qgiax2kgbgshu2a5y4hfg', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Your invitation request has been submitted successfully!');
+                        invitationForm.reset();
+                        invitationModal.style.display = 'none';
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was a problem submitting your request. Please try again.');
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    // Remove the '#' from the href before selecting
+                    if (targetId && targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Modal Open Buttons
+            const coHostLink = document.getElementById('coHostLink');
+            if (coHostLink) {
+                coHostLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const coHostModal = document.getElementById('coHostModal');
+                    if (coHostModal) {
+                        coHostModal.style.display = 'block';
+                    }
+                });
+            }
+
+            // Modal Close Buttons
+            const closeInvitationModal = document.getElementById('closeInvitationModal');
+            if (closeInvitationModal) {
+                closeInvitationModal.addEventListener('click', () => {
+                    const invitationModal = document.getElementById('invitationModal');
+                    if (invitationModal) {
+                        invitationModal.style.display = 'none';
+                    }
+                });
+            }
+
+            const closeCoHostModal = document.getElementById('closeCoHostModal');
+            if (closeCoHostModal) {
+                closeCoHostModal.addEventListener('click', () => {
+                    const coHostModal = document.getElementById('coHostModal');
+                    if (coHostModal) {
+                        coHostModal.style.display = 'none';
+                    }
+                });
+            }
+
+            // Form Submission Handlers
+            const coHostForm = document.getElementById('coHostForm');
+            if (coHostForm) {
+                coHostForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(coHostForm);
+                    const data = Object.fromEntries(formData.entries());
+                    
+                    data.formType = 'co-host';
+
+                    fetch('https://hook.us1.make.com/0ciymzlu3n7qgiax2kgbgshu2a5y4hfg', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Your co-host request has been submitted successfully!');
+                            coHostForm.reset();
+                            document.getElementById('coHostModal').style.display = 'none';
+                        } else {
+                            throw new Error('Submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was a problem submitting your request. Please try again.');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
