@@ -41,37 +41,25 @@
     font-style: normal;
 }
 
-/* Tailwind Base Styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Global Styles */
 body, html {
     font-family: 'Josefin Sans', sans-serif;
     line-height: 1.6;
-    background-color: #0F0F0F;
-    color: #FFFFFF;
+    background-color: #343434;
+    color: white;
 }
 
 /* Specific Font Classes */
-.font-body {
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-.font-regular-body {
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: normal;
+.font-semibold-tagline {
+    font-family: 'Josefin Sans SemiBold', sans-serif;
 }
 
 .font-bold-heading {
     font-family: 'Josefin Sans Bold', sans-serif;
-    font-weight: bold;
 }
 
-.font-semibold-button {
-    font-family: 'Josefin Sans SemiBold', sans-serif;
-    font-weight: 600;
+.font-regular-body {
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 /* Additional Font Classes */
@@ -79,28 +67,8 @@ body, html {
     font-family: 'Josefin Sans Light Italic', sans-serif;
 }
 
-/* Tailwind-like utility classes */
-.bg-forward-background {
-    background-color: #0F0F0F !important;
-}
-
-.text-forward-text-primary {
-    color: #FFFFFF;
-}
-
-.text-forward-text-secondary {
-    color: #888888;
-}
-
-.border-color {
-    border-color: #1F1F1F;
-}
-
-/* Global Responsive Adjustments */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.font-semibold-button {
+    font-family: 'Josefin Sans SemiBold', sans-serif;
 }
 
 /* Invitation Modal Styles */
@@ -188,18 +156,26 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: transparent;
+    backdrop-filter: blur(10px);
 }
 
 .modal-content {
-    background-color: #1a1a1a;
+    background-color: transparent;
     margin: 15% auto;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     width: 80%;
     max-width: 500px;
     position: relative;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05)
+    );
 }
 
 .modal-content input,
@@ -232,11 +208,28 @@ body, html {
     cursor: pointer;
 }
 
-/* Hover and Interaction Styles */
-.group:hover {
-    transform: perspective(1000px) rotateX(-5deg) rotateY(5deg);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
-    border-color: #D4AF37;
+/* Tailwind-like utility classes */
+.bg-forward-background {
+    background-color: #343434;
+}
+
+.text-forward-text-primary {
+    color: white;
+}
+
+.text-forward-text-secondary {
+    color: #888888;
+}
+
+/* Form Styles */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #1F1F1F;
+    color: white;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
 }
 
 /* Responsive Design Improvements */
@@ -297,6 +290,7 @@ body, html {
     }
 }
 
+/* Typography Responsiveness */
 @media screen and (max-width: 480px) {
     body {
         font-size: 12px;
@@ -309,69 +303,6 @@ body, html {
     .logo {
         max-width: 250px;
         max-height: 75px;
-    }
-}
-
-/* Mobile-First Approach */
-@media screen and (max-width: 768px) {
-    /* Ensure custom styles take precedence */
-    body {
-        background-color: #0F0F0F !important;
-        color: #FFFFFF !important;
-    }
-
-    /* Video background */
-    video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -1000;
-        background: #0F0F0F;
-        object-fit: cover;
-    }
-
-    /* Events section */
-    #upcoming-events {
-        padding: 2rem 1rem !important;
-    }
-
-    #upcoming-events .grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
-
-    #upcoming-events .grid > div {
-        width: 100% !important;
-        margin-bottom: 1rem !important;
-    }
-
-    /* Typography adjustments */
-    h1, h2, h3 {
-        font-size: 1.5rem !important;
-        line-height: 1.2 !important;
-    }
-
-    h4 {
-        font-size: 1.25rem !important;
-    }
-
-    /* Ensure custom fonts are loaded */
-    @font-face {
-        font-family: 'JosefinSans-Bold';
-        src: url('fonts/JosefinSans-Bold.ttf') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'JennaSue';
-        src: url('fonts/JennaSue.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
     }
 }
 
@@ -526,11 +457,7 @@ video {
     overflow: hidden;
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    background: linear-gradient(
-        135deg, 
-        #1a1a1a 0%, 
-        #2a2a2a 100%
-    );
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
 }
@@ -672,23 +599,33 @@ main section.relative img {
     filter: brightness(1.2) contrast(1.2);
 }
 
-/* Typography Responsiveness */
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 12px;
+/* Mobile Video Compatibility */
+@media screen and (max-width: 768px) {
+    .mobile-video {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        z-index: -1000 !important;
+        background: black !important;
+        object-fit: cover !important;
     }
-}
 
-@media screen and (max-width: 1024px) {
     body {
-        font-size: 16px;
+        background-color: #0F0F0F !important;
+        overflow-x: hidden !important;
     }
-}
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    video {
-        width: 100%;
-        height: auto;
+    main {
+        position: relative !important;
+        z-index: 10 !important;
+    }
+
+    section {
+        position: relative !important;
+        z-index: 10 !important;
     }
 }
