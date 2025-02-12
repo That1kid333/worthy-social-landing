@@ -919,27 +919,32 @@ main section.relative img {
         align-items: center !important;
         gap: 1rem !important;
         margin-top: 2rem !important;
+        width: 100% !important;
     }
 
-    .flex.justify-center.space-x-4.mt-8 > * {
+    .flex.justify-center.space-x-4.mt-8 > a {
+        display: inline-block !important;
         width: auto !important;
         padding: 12px 24px !important;
         border-radius: 9999px !important;
-        font-size: 1rem !important;
+        font-size: 0.875rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
         transition: all 0.3s ease !important;
+        text-align: center !important;
+        cursor: pointer !important;
         margin: 0 !important;
     }
 
-    /* Specific Button Styles */
+    /* First Button (View Upcoming Events) */
     .flex.justify-center.space-x-4.mt-8 > a:first-child {
         background-color: #ffffff !important;
         color: #000000 !important;
         border: 2px solid #000000 !important;
     }
 
+    /* Second Button (Request Invitation / Become Co-Host) */
     .flex.justify-center.space-x-4.mt-8 > a:last-child {
         background-color: #000000 !important;
         color: #ffffff !important;
