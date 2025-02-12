@@ -503,6 +503,19 @@ main section.relative img {
         max-width: 100% !important;
     }
 
+    /* Center Justify Content */
+    body, 
+    main, 
+    section, 
+    .container, 
+    #upcoming-events {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
     /* Logo Sizing */
     .logo {
         max-width: 150px !important;
@@ -528,12 +541,20 @@ main section.relative img {
         object-fit: cover !important;
     }
 
+    /* Footer */
+    footer {
+        background-color: black !important;
+        color: white !important;
+    }
+
     /* Event Cards */
     #upcoming-events .grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 0.5rem !important;
         width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     #upcoming-events .bg-gray-900 {
@@ -554,11 +575,13 @@ main section.relative img {
     #upcoming-events .bg-gray-900 h4 {
         font-size: 1.2rem !important;
         margin-bottom: 0.5rem !important;
+        text-align: center !important;
     }
 
     #upcoming-events .bg-gray-900 p {
         font-size: 0.9rem !important;
         margin-bottom: 0.5rem !important;
+        text-align: center !important;
     }
 
     /* Button Container */
@@ -567,8 +590,8 @@ main section.relative img {
         flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 0.5rem !important;
-        margin-top: 1rem !important;
+        gap: 1rem !important;
+        margin-top: 2rem !important;
         width: 100% !important;
     }
 
@@ -578,55 +601,62 @@ main section.relative img {
         align-items: center !important;
         justify-content: center !important;
         width: auto !important;
-        min-width: 0 !important;
-        padding: 10px 20px !important;
-        border-radius: 25px !important;
+        min-width: 200px !important;
+        padding: 15px 25px !important;
+        border-radius: 50px !important;
         font-family: 'Josefin Sans', sans-serif !important;
-        font-size: 0.8rem !important;
-        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
+        letter-spacing: 0.1em !important;
         transition: all 0.3s ease !important;
         text-align: center !important;
         cursor: pointer !important;
         margin: 0 !important;
-        border: 2px solid #000000 !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        position: relative !important;
+        overflow: hidden !important;
     }
 
     /* First Button (View Upcoming Events) */
     .flex.justify-center.space-x-4.mt-8 > a:first-child {
         background-color: transparent !important;
         color: #000000 !important;
+        border: 2px solid #000000 !important;
     }
 
-    /* Second Button (Become a Co-Host) */
+    /* Second Button (Request Invitation / Become Co-Host) */
     .flex.justify-center.space-x-4.mt-8 > a:last-child {
-        background-color: transparent !important;
-        color: #000000 !important;
-        position: relative !important;
-        overflow: hidden !important;
-        z-index: 1 !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #000000 !important;
     }
 
-    /* Hover Effects */
-    .flex.justify-center.space-x-4.mt-8 > a:last-child::before {
+    /* Hover Effects with Subtle Animations */
+    .flex.justify-center.space-x-4.mt-8 > a:first-child:hover {
+        background-color: rgba(0,0,0,0.05) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover {
+        background-color: #222222 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Button Pseudo-elements for Additional Style */
+    .flex.justify-center.space-x-4.mt-8 > a::before {
         content: '' !important;
         position: absolute !important;
         top: 0 !important;
         left: -100% !important;
         width: 100% !important;
         height: 100% !important;
-        background-color: #000000 !important;
-        transition: left 0.3s ease !important;
-        z-index: -1 !important;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+        transition: all 0.5s !important;
     }
 
-    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover::before {
-        left: 0 !important;
-    }
-
-    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover {
-        color: #ffffff !important;
+    .flex.justify-center.space-x-4.mt-8 > a:hover::before {
+        left: 100% !important;
     }
 
     /* Prevent any potential overflow */
