@@ -493,38 +493,3 @@ main section.relative img {
     display: block;
     filter: brightness(1.2) contrast(1.2);
 }
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
-
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: 15px;
-    }
-
-    .modal-logo {
-        max-width: 200px;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .font-bold-heading {
-        font-size: 2rem;
-    }
-
-    .font-regular-body {
-        font-size: 0.9rem;
-    }
-
-    .font-semibold-button {
-        font-size: 0.9rem;
-    }
-}
