@@ -245,8 +245,9 @@ input, textarea {
 
 @media (max-width: 768px) {
     .logo {
-        max-width: 300px;
-        max-height: 90px;
+        max-width: 150px !important;
+        height: auto !important;
+        margin: 10px 0 !important;
     }
 }
 
@@ -824,5 +825,87 @@ main section.relative img {
     * {
         max-width: 100% !important;
         overflow-x: hidden !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Logo Resizing */
+    .logo {
+        max-width: 150px !important;
+        height: auto !important;
+        margin: 10px 0 !important;
+    }
+
+    /* Top Section Layout Optimization */
+    main > section:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 10px 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Header and Navigation Adjustments */
+    header {
+        padding: 10px 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    nav {
+        margin-top: 10px !important;
+    }
+
+    /* Adjust First Section Content */
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center {
+        min-height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 15px !important;
+    }
+
+    /* Video Sizing */
+    video {
+        max-width: 100% !important;
+        max-height: 50vh !important;
+        margin-top: 10px !important;
+    }
+
+    /* Ensure No Scrolling */
+    body, html {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+        overscroll-behavior-y: none !important;
+    }
+
+    /* Content Spacing */
+    .text-white.text-4xl.font-bold.text-center {
+        font-size: 2rem !important;
+        margin-top: 10px !important;
+    }
+
+    .text-white.text-xl.text-center {
+        font-size: 1rem !important;
+        margin: 10px 0 !important;
+    }
+
+    /* Buttons */
+    .flex.justify-center.space-x-4.mt-8 {
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: 20px !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > * {
+        margin: 10px 0 !important;
+        width: 80% !important;
+    }
+
+    /* Prevent any potential scrolling or overflow */
+    * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 }
