@@ -444,6 +444,15 @@ video {
     color: white;
 }
 
+/* Mobile Events Title Font */
+@media screen and (max-width: 768px) {
+    #upcoming-events h3 {
+        font-family: 'JosefinSans-Bold', sans-serif !important;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+}
+
 /* Unique Event Card Styles */
 #upcoming-events .grid > div {
     position: relative;
