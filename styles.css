@@ -771,3 +771,54 @@ video {
         padding: 10px 15px;
     }
 }
+
+/* Mobile Events and Footer Improvements */
+@media screen and (max-width: 768px) {
+    /* Center Justify Events */
+    #upcoming-events .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #upcoming-events .grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    #upcoming-events .grid > div {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 15px;
+    }
+
+    /* Footer Mobile Styling */
+    footer {
+        background-color: #000 !important;
+        color: #fff !important;
+    }
+
+    /* Ensure footer content is centered */
+    footer .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .footer-content {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    /* Social Icons Centering */
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+}
