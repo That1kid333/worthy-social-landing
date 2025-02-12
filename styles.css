@@ -914,46 +914,44 @@ main section.relative img {
     /* Button Styling to Match Desktop */
     .flex.justify-center.space-x-4.mt-8 {
         display: flex !important;
+        flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
         gap: 1rem !important;
         margin-top: 2rem !important;
     }
 
-    .flex.justify-center.space-x-4.mt-8 > a {
-        display: inline-block !important;
+    .flex.justify-center.space-x-4.mt-8 > * {
+        width: auto !important;
         padding: 12px 24px !important;
-        border-radius: 9999px !important; /* Fully rounded corners */
+        border-radius: 9999px !important;
         font-size: 1rem !important;
         font-weight: 600 !important;
         text-transform: uppercase !important;
-        letter-spacing: 1px !important;
+        letter-spacing: 0.05em !important;
         transition: all 0.3s ease !important;
-        text-align: center !important;
-        width: auto !important;
-        max-width: 250px !important;
+        margin: 0 !important;
     }
 
-    /* Primary Button (First Button) */
+    /* Specific Button Styles */
     .flex.justify-center.space-x-4.mt-8 > a:first-child {
         background-color: #ffffff !important;
         color: #000000 !important;
-        border: 2px solid #ffffff !important;
+        border: 2px solid #000000 !important;
     }
 
-    /* Secondary Button (Second Button) */
     .flex.justify-center.space-x-4.mt-8 > a:last-child {
-        background-color: transparent !important;
+        background-color: #000000 !important;
         color: #ffffff !important;
-        border: 2px solid #ffffff !important;
+        border: 2px solid #000000 !important;
     }
 
     /* Hover Effects */
     .flex.justify-center.space-x-4.mt-8 > a:first-child:hover {
-        background-color: rgba(255,255,255,0.8) !important;
+        background-color: #f4f4f4 !important;
     }
 
     .flex.justify-center.space-x-4.mt-8 > a:last-child:hover {
-        background-color: rgba(255,255,255,0.2) !important;
+        background-color: #333333 !important;
     }
 }
