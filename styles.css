@@ -225,6 +225,104 @@ input, textarea {
     border-radius: 5px;
 }
 
+/* Responsive Design Improvements */
+@media screen and (max-width: 1024px) {
+    /* Tablet Styles */
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .logo {
+        max-width: 400px;
+        max-height: 120px;
+    }
+
+    #upcoming-events .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Mobile Styles */
+    body {
+        font-size: 14px;
+    }
+
+    .logo {
+        max-width: 300px;
+        max-height: 90px;
+    }
+
+    #upcoming-events .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.8rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+
+    header nav {
+        flex-direction: column;
+        height: auto;
+    }
+
+    header nav a {
+        margin: 10px 0;
+    }
+}
+
+/* Typography Responsiveness */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.2rem; }
+
+    .logo {
+        max-width: 250px;
+        max-height: 75px;
+    }
+}
+
+/* Global Responsive Adjustments */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure consistent font rendering */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Touch-friendly interactive elements */
+a, button, input, select, textarea {
+    touch-action: manipulation;
+    min-height: 44px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .modal-content {
