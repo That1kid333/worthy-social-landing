@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Custom Font Faces */
 @font-face {
     font-family: 'Josefin Sans';
@@ -45,6 +41,11 @@
     font-style: normal;
 }
 
+/* Tailwind Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global Styles */
 body, html {
     font-family: 'Josefin Sans', sans-serif;
@@ -54,16 +55,23 @@ body, html {
 }
 
 /* Specific Font Classes */
-.font-semibold-tagline {
-    font-family: 'Josefin Sans SemiBold', sans-serif;
-}
-
-.font-bold-heading {
-    font-family: 'Josefin Sans Bold', sans-serif;
+.font-body {
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .font-regular-body {
     font-family: 'Josefin Sans', sans-serif;
+    font-weight: normal;
+}
+
+.font-bold-heading {
+    font-family: 'Josefin Sans Bold', sans-serif;
+    font-weight: bold;
+}
+
+.font-semibold-button {
+    font-family: 'Josefin Sans SemiBold', sans-serif;
+    font-weight: 600;
 }
 
 /* Additional Font Classes */
@@ -71,8 +79,28 @@ body, html {
     font-family: 'Josefin Sans Light Italic', sans-serif;
 }
 
-.font-semibold-button {
-    font-family: 'Josefin Sans SemiBold', sans-serif;
+/* Tailwind-like utility classes */
+.bg-forward-background {
+    background-color: #0F0F0F !important;
+}
+
+.text-forward-text-primary {
+    color: #FFFFFF;
+}
+
+.text-forward-text-secondary {
+    color: #888888;
+}
+
+.border-color {
+    border-color: #1F1F1F;
+}
+
+/* Global Responsive Adjustments */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Invitation Modal Styles */
@@ -160,26 +188,18 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .modal-content {
-    background-color: transparent;
+    background-color: #1a1a1a;
     margin: 15% auto;
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     width: 80%;
     max-width: 500px;
     position: relative;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0.1), 
-        rgba(255, 255, 255, 0.05)
-    );
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .modal-content input,
@@ -212,28 +232,11 @@ body, html {
     cursor: pointer;
 }
 
-/* Tailwind-like utility classes */
-.bg-forward-background {
-    background-color: #0F0F0F !important;
-}
-
-.text-forward-text-primary {
-    color: white;
-}
-
-.text-forward-text-secondary {
-    color: #888888;
-}
-
-/* Form Styles */
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #1F1F1F;
-    color: white;
-    border: 1px solid #ffffff;
-    border-radius: 5px;
+/* Hover and Interaction Styles */
+.group:hover {
+    transform: perspective(1000px) rotateX(-5deg) rotateY(5deg);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+    border-color: #D4AF37;
 }
 
 /* Responsive Design Improvements */
@@ -667,4 +670,25 @@ main section.relative img {
     margin: 0 auto 1rem;
     display: block;
     filter: brightness(1.2) contrast(1.2);
+}
+
+/* Typography Responsiveness */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    video {
+        width: 100%;
+        height: auto;
+    }
 }
