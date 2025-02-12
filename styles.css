@@ -677,14 +677,14 @@ main section.relative img {
 
 /* Fix mobile top section and event card sizing */
 @media screen and (max-width: 768px) {
-    /* Comprehensive Top Section Fix with Additional Top Padding */
+    /* Top Section Complete Fix */
     body {
         overflow-x: hidden !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    /* Ensure first section is fully visible with top padding */
+    /* Ensure first section is fully visible */
     main > section:first-child {
         display: flex !important;
         flex-direction: column !important;
@@ -693,7 +693,7 @@ main section.relative img {
         width: 100% !important;
         min-height: 100vh !important;
         margin: 0 !important;
-        padding-top: 300px !important;
+        padding: 0 !important;
         overflow: visible !important;
     }
 
@@ -705,10 +705,6 @@ main section.relative img {
         align-items: center !important;
         margin: 0 !important;
         padding: 0 !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 1000 !important;
     }
 
     /* Ensure logo and navigation are fully visible */
@@ -719,7 +715,6 @@ main section.relative img {
         max-width: 100% !important;
         margin: 0 !important;
         padding: 10px 0 !important;
-        background-color: white !important;
     }
 
     /* Logo specific styling */
@@ -751,5 +746,61 @@ main section.relative img {
         max-width: 100% !important;
         overflow-x: hidden !important;
         box-sizing: border-box !important;
+    }
+}
+
+/* Targeted mobile top section visibility fix */
+@media screen and (max-width: 768px) {
+    /* Comprehensive Top Section Mobile Fix */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    main > section:first-child {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    main > section:first-child > * {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Navigation and Logo Container */
+    nav, 
+    .nav-container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 0 !important;
+    }
+
+    /* Video Container */
+    .video-container,
+    video {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 60vh !important;
+        object-fit: cover !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Prevent any content overflow */
+    * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
     }
 }
