@@ -822,3 +822,58 @@ video {
         margin-top: 15px;
     }
 }
+
+/* Mobile Video Improvements */
+@media screen and (max-width: 768px) {
+    /* Video Container Styling */
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        overflow: hidden;
+    }
+
+    .video-container video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+
+    /* Ensure video doesn't overflow */
+    main section.relative {
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+    }
+
+    /* Overlay Styling */
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+}
+
+/* Ensure video works on smaller devices */
+@media screen and (max-width: 480px) {
+    .video-container video {
+        width: auto;
+        height: auto;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
