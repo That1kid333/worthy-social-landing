@@ -343,21 +343,21 @@
 
     <main>
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <div class="video-container">
+            <div class="mobile-video-container">
                 <video 
                     src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
                     autoplay 
                     loop 
                     muted 
                     playsinline
-                    preload="auto"
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+                    preload="metadata"
+                    class="w-full h-full object-cover"
                 >
                     Your browser does not support the video tag.
                 </video>
             </div>
-            <div class="video-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div class="mobile-center-container text-center px-4">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="mobile-center-container text-center">
                     <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-4">
                     
                     <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
