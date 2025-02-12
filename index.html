@@ -347,56 +347,55 @@
     </div>
 
     <main>
-        <section class="relative min-h-screen w-full overflow-hidden flex items-center mobile-hero-section">
-            <div class="mobile-video-container absolute inset-0">
-                <video 
-                    id="mobile-hero-video"
-                    src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
-                    autoplay 
-                    loop 
-                    muted 
-                    playsinline
-                    webkit-playsinline
-                    x5-playsinline
-                    preload="auto"
-                    disablePictureInPicture
-                    controlsList="nodownload noplaybackrate"
-                    class="absolute top-0 left-0 w-full h-full object-cover"
-                >
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center mobile-hero-overlay">
-                <div class="mobile-center-container text-center relative z-10">
-                    <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-4">
+        <section class="relative min-h-screen w-full bg-black mobile-hero-section">
+            <div class="mobile-center-container text-center px-4 pt-8">
+                <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-8">
+                
+                <div class="mobile-video-container mb-8">
+                    <video 
+                        id="mobile-hero-video"
+                        src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
+                        autoplay 
+                        loop 
+                        muted 
+                        playsinline
+                        webkit-playsinline
+                        x5-playsinline
+                        preload="auto"
+                        disablePictureInPicture
+                        controlsList="nodownload noplaybackrate"
+                        class="w-full max-w-md mx-auto object-cover rounded-lg"
+                    >
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
+                
+                <h3 class="text-3xl font-bold mb-4 font-bold-heading text-white">We're club-ish.</h3>
+                
+                <div class="font-regular-body text-white mb-6">
+                    <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
                     
-                    <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
+                    <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
                     
-                    <h3 class="text-3xl font-bold mb-4 font-bold-heading text-white">We're club-ish.</h3>
-                    
-                    <div class="font-regular-body text-white mb-6">
-                        <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
-                        
-                        <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
-                        
-                        <p>We'll start workshopping those handshakes asap.</p>
-                    </div>
-                    
-                    <div class="mobile-button-group">
-                        <a 
-                            href="#upcoming-events" 
-                            class="mobile-button btn-secondary"
-                        >
-                            View Upcoming Events
-                        </a>
-                        <a 
-                            href="#" 
-                            id="requestInvitationMainLink" 
-                            class="mobile-button btn-primary"
-                        >
-                            Request Invitation
-                        </a>
-                    </div>
+                    <p>We'll start workshopping those handshakes asap.</p>
+                </div>
+                
+                <div class="mobile-button-group">
+                    <a 
+                        href="#upcoming-events" 
+                        class="mobile-button btn-secondary mb-4"
+                    >
+                        View Upcoming Events
+                    </a>
+                    <a 
+                        href="#" 
+                        id="requestInvitationMainLink" 
+                        class="mobile-button btn-primary"
+                    >
+                        Request Invitation
+                    </a>
                 </div>
             </div>
         </section>

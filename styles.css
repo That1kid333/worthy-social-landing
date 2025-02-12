@@ -960,3 +960,34 @@ video {
         z-index: 2;
     }
 }
+
+/* Mobile Hero Section Specific Styling */
+@media screen and (max-width: 768px) {
+    .mobile-hero-section {
+        background-color: black !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem 1rem;
+    }
+
+    .mobile-video-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 2rem;
+    }
+
+    .mobile-video-container video {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 0.5rem;
+        object-fit: cover;
+    }
+
+    .mobile-center-container {
+        width: 100%;
+        max-width: 600px;
+    }
+}
