@@ -876,15 +876,13 @@ video {
 @media screen and (max-width: 768px) {
     /* Ensure video covers full width and maintains aspect ratio */
     .mobile-video-container {
-        position: relative;
-        width: 100vw;
-        height: 56.25vw; /* 16:9 Aspect Ratio */
-        max-height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+        z-index: -1;
     }
 
     .mobile-video-container video {
@@ -897,6 +895,7 @@ video {
         height: auto;
         transform: translate(-50%, -50%);
         object-fit: cover;
+        z-index: -1;
     }
 
     /* Ensure video plays on mobile */
@@ -907,5 +906,8 @@ video {
         perspective: 1000;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
 }
