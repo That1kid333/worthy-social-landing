@@ -28,6 +28,13 @@
 }
 
 @font-face {
+    font-family: 'JosefinSans-Bold';
+    src: url('fonts/JosefinSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'JennaSue';
     src: url('fonts/JennaSue.ttf') format('truetype');
     font-weight: normal;
