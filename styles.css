@@ -672,4 +672,28 @@ main section.relative img {
         font-size: 0.9rem !important;
         line-height: 1.4 !important;
     }
+
+    /* Mobile Video Repositioning */
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        min-height: 100vh !important;
+        padding: 15px !important;
+    }
+
+    /* Ensure buttons appear before video */
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center > .flex.justify-center.space-x-4.mt-8 {
+        order: 1 !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Position video after buttons */
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center > video {
+        order: 2 !important;
+        max-width: 100% !important;
+        max-height: 60vh !important;
+        object-fit: cover !important;
+    }
 }
