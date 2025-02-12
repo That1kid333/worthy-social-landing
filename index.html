@@ -243,6 +243,34 @@
         button[type="submit"]:hover {
             background-color: #C0A030 !important;
         }
+        
+        /* Mobile button styles */
+        .mobile-button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mobile-button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .btn-secondary {
+            background-color: #1F1F1F !important;
+            color: #FFFFFF !important;
+        }
+        .btn-secondary:hover {
+            background-color: #333333 !important;
+        }
+        .btn-primary {
+            background-color: #D4AF37 !important;
+            color: #0F0F0F !important;
+        }
+        .btn-primary:hover {
+            background-color: #C0A030 !important;
+        }
     </style>
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
@@ -326,23 +354,41 @@
                 ></video>
             </div>
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div class="text-center px-4">
-                    <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto">
-                    <p class="text-xl mb-4 font-semibold-tagline">People and places worthy of your time</p>
-                    <h3 class="text-3xl font-bold mb-4 font-bold-heading">We're club-ish.</h3>
-                    <div class="font-regular-body">
+                <div class="mobile-center-container text-center">
+                    <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-4">
+                    
+                    <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
+                    
+                    <h3 class="text-3xl font-bold mb-4 font-bold-heading text-white">We're club-ish.</h3>
+                    
+                    <div class="font-regular-body text-white mb-6">
                         <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
+                        
                         <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
+                        
                         <p>We'll start workshopping those handshakes asap.</p>
                     </div>
-                    <div class="mt-6 flex justify-center space-x-4">
-                        <a href="#upcoming-events" class="border border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition font-light-italic">View upcoming events</a>
+                    
+                    <div class="mobile-button-group">
+                        <a 
+                            href="#upcoming-events" 
+                            class="mobile-button btn-secondary"
+                        >
+                            View Upcoming Events
+                        </a>
                         <a 
                             href="#" 
                             id="requestInvitationMainLink" 
-                            class="inline-block bg-gold-600 text-black py-3 px-6 rounded-full text-lg font-semibold hover:bg-gold-700 transition-colors duration-300 mobile-button"
+                            class="mobile-button btn-primary"
                         >
-                            Request an Invitation
+                            Request Invitation
+                        </a>
+                        <a 
+                            href="#" 
+                            id="becomeCoHostLink" 
+                            class="mobile-button btn-secondary"
+                        >
+                            Become a Co-Host
                         </a>
                     </div>
                 </div>
