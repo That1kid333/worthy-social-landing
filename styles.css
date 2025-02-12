@@ -909,3 +909,51 @@ main section.relative img {
         box-sizing: border-box !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+    /* Button Styling to Match Desktop */
+    .flex.justify-center.space-x-4.mt-8 {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        margin-top: 2rem !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a {
+        display: inline-block !important;
+        padding: 12px 24px !important;
+        border-radius: 9999px !important; /* Fully rounded corners */
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        transition: all 0.3s ease !important;
+        text-align: center !important;
+        width: auto !important;
+        max-width: 250px !important;
+    }
+
+    /* Primary Button (First Button) */
+    .flex.justify-center.space-x-4.mt-8 > a:first-child {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #ffffff !important;
+    }
+
+    /* Secondary Button (Second Button) */
+    .flex.justify-center.space-x-4.mt-8 > a:last-child {
+        background-color: transparent !important;
+        color: #ffffff !important;
+        border: 2px solid #ffffff !important;
+    }
+
+    /* Hover Effects */
+    .flex.justify-center.space-x-4.mt-8 > a:first-child:hover {
+        background-color: rgba(255,255,255,0.8) !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover {
+        background-color: rgba(255,255,255,0.2) !important;
+    }
+}
