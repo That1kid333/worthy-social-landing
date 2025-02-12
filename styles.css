@@ -502,6 +502,46 @@ video {
     color: #A0A0A0 !important;
 }
 
+/* Mobile Events Centering */
+@media screen and (max-width: 768px) {
+    /* Center RSVP Text */
+    #upcoming-events .rsvp-text {
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+
+    /* Center Event Card Content */
+    #upcoming-events .grid > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #upcoming-events .grid > div > div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #upcoming-events .grid > div h4 {
+        text-align: center;
+        width: 100%;
+    }
+
+    #upcoming-events .grid > div p {
+        text-align: center;
+        width: 100%;
+    }
+
+    #upcoming-events .grid > div .text-gray-500 {
+        text-align: center;
+        width: 100%;
+    }
+}
+
 /* Footer Styling */
 footer {
     background-color: white;
