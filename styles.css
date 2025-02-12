@@ -603,7 +603,7 @@ main section.relative img {
         width: auto !important;
         min-width: 200px !important;
         padding: 15px 25px !important;
-        border-radius: 50px !important;
+        border-radius: 9999px !important; /* Fully rounded border */
         font-family: 'Josefin Sans', sans-serif !important;
         font-size: 0.9rem !important;
         font-weight: 700 !important;
@@ -616,20 +616,19 @@ main section.relative img {
         box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
         position: relative !important;
         overflow: hidden !important;
+        border: 2px solid #000000 !important; /* Ensure border is visible */
     }
 
     /* First Button (View Upcoming Events) */
     .flex.justify-center.space-x-4.mt-8 > a:first-child {
         background-color: transparent !important;
         color: #000000 !important;
-        border: 2px solid #000000 !important;
     }
 
     /* Second Button (Request Invitation / Become Co-Host) */
     .flex.justify-center.space-x-4.mt-8 > a:last-child {
         background-color: #000000 !important;
         color: #ffffff !important;
-        border: 2px solid #000000 !important;
     }
 
     /* Hover Effects with Subtle Animations */
