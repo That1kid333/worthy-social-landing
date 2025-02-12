@@ -677,58 +677,82 @@ main section.relative img {
 
 /* Fix mobile top section and event card sizing */
 @media screen and (max-width: 768px) {
-    /* Top Section Fix */
+    /* Top Section Complete Fix */
     main > section:first-child {
         min-height: 100vh !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         align-items: center !important;
-        padding: 20px !important;
-        box-sizing: border-box !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* Ensure video is fully visible */
-    video {
+    /* Ensure logo and initial content are fully visible */
+    main > section:first-child > * {
+        width: 100% !important;
         max-width: 100% !important;
+    }
+
+    /* Video Sizing */
+    video {
+        width: 100% !important;
         max-height: 60vh !important;
         object-fit: cover !important;
     }
 
-    /* Event Cards Uniform Sizing */
+    /* Uniform Event Cards */
     #upcoming-events .grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
+        width: 100% !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+    }
+
+    #upcoming-events .grid > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
     }
 
     #upcoming-events .bg-gray-900 {
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
-        height: 100% !important;
-        min-height: 300px !important;
-        width: 90% !important;
-        margin: 0 auto 1rem !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        min-height: 350px !important;
         padding: 1.5rem !important;
         box-sizing: border-box !important;
+        margin-bottom: 1rem !important;
     }
 
-    /* Ensure consistent content layout within event cards */
+    /* Consistent Card Content */
     #upcoming-events .bg-gray-900 > div {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        width: 100% !important;
         flex-grow: 1 !important;
     }
 
     #upcoming-events .bg-gray-900 h4 {
+        text-align: center !important;
         margin-bottom: 0.5rem !important;
+        width: 100% !important;
     }
 
     #upcoming-events .bg-gray-900 p {
+        text-align: center !important;
         margin-bottom: 0.5rem !important;
+        width: 100% !important;
     }
 
     /* Prevent content overflow */
