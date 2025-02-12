@@ -347,9 +347,10 @@
     </div>
 
     <main>
-        <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <div class="mobile-video-container">
+        <section class="relative min-h-screen w-full overflow-hidden flex items-center mobile-hero-section">
+            <div class="mobile-video-container absolute inset-0">
                 <video 
+                    id="mobile-hero-video"
                     src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
                     autoplay 
                     loop 
@@ -360,14 +361,13 @@
                     preload="auto"
                     disablePictureInPicture
                     controlsList="nodownload noplaybackrate"
-                    poster="images/logo.png"
                     class="absolute top-0 left-0 w-full h-full object-cover"
                 >
                     Your browser does not support the video tag.
                 </video>
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-                <div class="mobile-center-container text-center relative z-20">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center mobile-hero-overlay">
+                <div class="mobile-center-container text-center relative z-10">
                     <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-4">
                     
                     <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
@@ -671,6 +671,29 @@
                 });
             }
         });
+    </script>
+
+    <!-- Mobile Video Debugging Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var video = document.getElementById('mobile-hero-video');
+        
+        // Logging video properties
+        console.log('Video src:', video.src);
+        console.log('Video readyState:', video.readyState);
+        console.log('Video networkState:', video.networkState);
+        
+        // Force video play on mobile
+        video.play().catch(function(error) {
+            console.error('Video play error:', error);
+        });
+
+        // Fallback for mobile browsers
+        if (video.paused) {
+            video.setAttribute('autoplay', '');
+            video.load();
+        }
+    });
     </script>
 </body>
 </html>

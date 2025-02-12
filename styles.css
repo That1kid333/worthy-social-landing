@@ -914,8 +914,8 @@ video {
 
 /* Mobile Video Background Improvements */
 @media screen and (max-width: 768px) {
-    /* Full-screen video container */
-    main > section {
+    /* Ensure full-screen video background */
+    .mobile-hero-section {
         position: relative;
         width: 100vw;
         height: 100vh;
@@ -929,7 +929,6 @@ video {
         width: 100%;
         height: 100%;
         z-index: 0;
-        overflow: hidden;
     }
 
     .mobile-video-container video {
@@ -945,28 +944,8 @@ video {
         z-index: 0;
     }
 
-    /* Ensure full coverage regardless of device dimensions */
-    @supports (width: 100vw) {
-        .mobile-video-container,
-        .mobile-video-container video {
-            width: 100vw;
-            height: 100vh;
-            max-width: none;
-            max-height: none;
-        }
-    }
-
-    /* Fallback for older browsers */
-    @supports not (width: 100vw) {
-        .mobile-video-container,
-        .mobile-video-container video {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    /* Adjust overlay */
-    .mobile-video-container + div {
+    /* Ensure overlay and content are above video */
+    .mobile-hero-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -976,7 +955,6 @@ video {
         background-color: rgba(0,0,0,0.5);
     }
 
-    /* Ensure content is above video */
     .mobile-center-container {
         position: relative;
         z-index: 2;
