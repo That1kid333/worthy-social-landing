@@ -985,3 +985,91 @@ main section.relative img {
         left: 100% !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+    /* Smaller Event Cards */
+    #upcoming-events .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #upcoming-events .bg-gray-900 {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        height: auto !important;
+        min-height: 250px !important;
+        max-height: 300px !important;
+        width: 90% !important;
+        margin: 0.5rem auto !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+    }
+
+    #upcoming-events .bg-gray-900 > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    #upcoming-events .bg-gray-900 h4 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    #upcoming-events .bg-gray-900 p {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Button Styling */
+    .flex.justify-center.space-x-4.mt-8 {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        margin-top: 1rem !important;
+        width: 100% !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        min-width: 0 !important;
+        padding: 10px 15px !important;
+        border-radius: 25px !important;
+        font-family: 'Josefin Sans', sans-serif !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        transition: all 0.3s ease !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        margin: 0 !important;
+    }
+
+    /* First Button (View Upcoming Events) */
+    .flex.justify-center.space-x-4.mt-8 > a:first-child {
+        background-color: transparent !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+    }
+
+    /* Second Button (Request Invitation / Become Co-Host) */
+    .flex.justify-center.space-x-4.mt-8 > a:last-child {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #000000 !important;
+    }
+}
