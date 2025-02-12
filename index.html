@@ -2,12 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worthy Social Club - Connect with Purpose</title>
     
     <!-- Link Preview Meta Tags -->
@@ -45,26 +40,9 @@
                             'accent': '#D4AF37',
                             'border': '#1F1F1F'
                         }
-                    },
-                    screens: {
-                        'xs': '375px',
-                        'sm': '640px',
-                        'md': '768px',
-                        'lg': '1024px',
-                        'xl': '1280px',
-                        '2xl': '1536px'
                     }
                 }
-            },
-            variants: {
-                extend: {
-                    display: ['responsive'],
-                    padding: ['responsive'],
-                    margin: ['responsive']
-                }
-            },
-            plugins: [],
-            important: true
+            }
         }
     </script>
     <style>
@@ -243,39 +221,6 @@
         button[type="submit"]:hover {
             background-color: #C0A030 !important;
         }
-        
-        /* Mobile button styles */
-        .mobile-button-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .mobile-button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px;
-        }
-        .btn-secondary {
-            background-color: #1F1F1F !important;
-            color: #FFFFFF !important;
-        }
-        .btn-secondary:hover {
-            background-color: #333333 !important;
-        }
-        .btn-primary {
-            background-color: #D4AF37 !important;
-            color: #0F0F0F !important;
-        }
-        .btn-primary:hover {
-            background-color: #C0A030 !important;
-        }
-        
-        /* Mobile RSVP text centering */
-        .rsvp-text {
-            text-align: center;
-        }
     </style>
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
@@ -284,42 +229,44 @@
     <div id="invitationModal" class="modal">
         <div class="modal-overlay" onclick="document.getElementById('invitationModal').style.display='none'"></div>
         <div class="modal-content">
-            <img src="images/logo.png" alt="Worthy Social Club Logo" class="modal-logo">
-            <span class="close" onclick="document.getElementById('invitationModal').style.display='none'">&times;</span>
-            <h2 class="text-2xl font-bold-heading text-white mb-6 text-center">Request an Invitation</h2>
-            <form id="invitationForm" class="font-regular-body">
-                <div class="mb-4">
-                    <label for="name" class="block text-white mb-2">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your full name" required>
-                </div>
-                <div class="mb-4">
-                    <label for="phone" class="block text-white mb-2">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Your contact number">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-white mb-2">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Your email address" required>
-                </div>
-                <div class="mb-4">
-                    <label for="referral" class="block text-white mb-2">Who referred you?</label>
-                    <input type="text" id="referral" name="referral" placeholder="Name of referral (optional)">
-                </div>
-                <div class="mb-4">
-                    <label for="about" class="block text-white mb-2">Tell us a little about yourself</label>
-                    <textarea id="about" name="about" rows="3" placeholder="Share a bit about who you are" required></textarea>
-                </div>
-                <div class="mb-4">
-                    <label for="profession" class="block text-white mb-2">What do you do for a living?</label>
-                    <input type="text" id="profession" name="profession" placeholder="Your profession or occupation">
-                </div>
-                <div class="mb-4">
-                    <label for="skills" class="block text-white mb-2">Special Skills or Resources</label>
-                    <textarea id="skills" name="skills" rows="3" placeholder="Any skills like photography, décor, cooking, event space, etc."></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-yellow-600 text-black px-6 py-3 rounded-full hover:bg-yellow-500 transition font-semibold-button">Submit Invitation Request</button>
-                </div>
-            </form>
+            <div class="flex flex-col items-center justify-center p-6 md:p-8">
+                <img src="images/logo.png" alt="Worthy Social Club Logo" class="modal-logo">
+                <span class="close" onclick="document.getElementById('invitationModal').style.display='none'">&times;</span>
+                <h2 class="text-2xl font-bold-heading text-white mb-6 text-center">Request an Invitation</h2>
+                <form id="invitationForm" class="font-regular-body">
+                    <div class="mb-4">
+                        <label for="name" class="block text-white mb-2">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your full name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="block text-white mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Your contact number">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-white mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="referral" class="block text-white mb-2">Who referred you?</label>
+                        <input type="text" id="referral" name="referral" placeholder="Name of referral (optional)">
+                    </div>
+                    <div class="mb-4">
+                        <label for="about" class="block text-white mb-2">Tell us a little about yourself</label>
+                        <textarea id="about" name="about" rows="3" placeholder="Share a bit about who you are" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="profession" class="block text-white mb-2">What do you do for a living?</label>
+                        <input type="text" id="profession" name="profession" placeholder="Your profession or occupation">
+                    </div>
+                    <div class="mb-4">
+                        <label for="skills" class="block text-white mb-2">Special Skills or Resources</label>
+                        <textarea id="skills" name="skills" rows="3" placeholder="Any skills like photography, décor, cooking, event space, etc."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-yellow-600 text-black px-6 py-3 rounded-full hover:bg-yellow-500 transition font-semibold-button">Submit Invitation Request</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -346,175 +293,101 @@
         </div>
     </div>
 
-    <main>
-        <section class="relative min-h-screen w-full bg-black mobile-hero-section">
-            <div class="mobile-center-container text-center px-4 pt-8">
-                <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto mb-8">
-                
-                <div class="mobile-video-container mb-8">
-                    <video 
-                        id="mobile-hero-video"
-                        src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
-                        autoplay 
-                        loop 
-                        muted 
-                        playsinline
-                        webkit-playsinline
-                        x5-playsinline
-                        preload="auto"
-                        disablePictureInPicture
-                        controlsList="nodownload noplaybackrate"
-                        class="w-full max-w-md mx-auto object-cover rounded-lg"
-                    >
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                
-                <p class="text-xl mb-4 font-semibold-tagline text-white">People and places worthy of your time</p>
-                
-                <h3 class="text-3xl font-bold mb-4 font-bold-heading text-white">We're club-ish.</h3>
-                
-                <div class="font-regular-body text-white mb-6">
-                    <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
-                    
-                    <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
-                    
-                    <p>We'll start workshopping those handshakes asap.</p>
-                </div>
-                
-                <div class="mobile-button-group">
-                    <a 
-                        href="#upcoming-events" 
-                        class="mobile-button btn-secondary mb-4"
-                    >
-                        View Upcoming Events
-                    </a>
-                    <a 
-                        href="#" 
-                        id="requestInvitationMainLink" 
-                        class="mobile-button btn-primary"
-                    >
-                        Request Invitation
-                    </a>
-                </div>
+    <main class="w-full">
+        <section class="relative min-h-screen w-full overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 z-0">
+                <video 
+                    src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
+                    autoplay 
+                    loop 
+                    muted 
+                    playsinline
+                    class="w-full h-full object-cover"
+                ></video>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 md:px-8 lg:px-16">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 font-bold-heading">
+                    Worthy Social Club
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-regular-body">
+                    Connecting Professionals Through Meaningful Experiences
+                </p>
+                <button 
+                    id="requestInvitationMainLink"
+                    class="bg-forward-accent text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold-button hover:bg-opacity-90 transition-all"
+                >
+                    Request Invitation
+                </button>
             </div>
         </section>
 
-        <section id="upcoming-events" class="bg-black py-16">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-4xl font-bold mb-12 text-white">Winter/Spring 2025 Events</h3>
-                <div class="mb-8">
-                    <p class="text-white font-semibold-button text-center rsvp-text">Please follow the links through Calendly to RSVP</p>
-                    <p class="text-white font-semibold-button text-center rsvp-text">ALL EVENTS REQUIRE AN RSVP</p>
+        <section id="upcoming-events" class="bg-black py-12 md:py-16">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-white font-bold-heading" style="font-family: 'JennaSue', cursive;">
+                    Winter/Spring 2025 Events
+                </h3>
+                <div class="mb-8 px-4 md:px-0">
+                    <p class="text-white font-semibold-button text-center mb-2">Please follow the links through Calendly to RSVP</p>
+                    <p class="text-white font-semibold-button text-center">ALL EVENTS REQUIRE AN RSVP</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Feb 14: Wine Exchange</h4>
-                            <p class="text-white">Take Home the One You Love - An intimate wine tasting event</p>
-                        </div>
-                        <p class="text-gray-500 italic">8:00pm @ 123 West Ridge Way, Roswell</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Feb 22: Babes Brunch</h4>
-                            <p class="text-white">Ladies Only Brunch Event</p>
-                        </div>
-                        <p class="text-gray-500 italic">12:00pm @ Le Bon Nosh</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/rock-band-karaoke', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 8: Rock Band Karaoke</h4>
-                            <p class="text-white">Unleash your inner rockstar at Dark Horse Tavern</p>
-                        </div>
-                        <p class="text-gray-500 italic">9:00pm @ Dark Horse Tavern</p>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/corepower-yoga-sculpt-dinner-at-true-food-kitchen', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 11: Yoga & Dinner</h4>
-                            <p class="text-white">CorePower Yoga followed by True Food Kitchen</p>
-                        </div>
-                        <p class="text-gray-500 italic">6:15pm @ CorePower Yoga Buckhead & True Food Kitchen</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch-1', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 16: Babes Brunch</h4>
-                            <p class="text-white">Ladies Only Brunch Event</p>
-                        </div>
-                        <p class="text-gray-500 italic">Location TBA</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/family-dinner-a-la-bolognese', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 30: Family Dinner</h4>
-                            <p class="text-white">Spaghetti Bolognese Gathering</p>
-                        </div>
-                        <p class="text-gray-500 italic">5:30pm @ 123 West Ridge Way, Roswell</p>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">April Wednesdays: Park Walks</h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 px-4 md:px-0">
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">April Wednesdays: Park Walks</h4>
                             <p class="text-white">Weekly Walk at Chastain Park</p>
                         </div>
                         <p class="text-gray-500 italic">6:15pm @ Chastain Park (near The Chastain)</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 5: Girls Night In</h4>
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">Apr 5: Girls Night In</h4>
                             <p class="text-white">Noir Night - Ladies Only</p>
                         </div>
                         <p class="text-gray-500 italic">7:30pm @ 99 West Paces</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 13: Dogwood Festival</h4>
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">Apr 13: Dogwood Festival</h4>
                             <p class="text-white">Piedmont Park's Annual Celebration</p>
                         </div>
                         <p class="text-gray-500 italic">1:30pm @ Piedmont Park (near Park Tavern)</p>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/fiesta-feast', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 5: Cinco de Mayo</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 px-4 md:px-0">
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/fiesta-feast', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">May 5: Cinco de Mayo</h4>
                             <p class="text-white">Fiesta Celebration</p>
                         </div>
                         <p class="text-gray-500 italic">7:00pm @ Location TBD</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/pom-before-the-peel', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 16: Pom Before the Peel</h4>
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/pom-before-the-peel', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">May 16: Pom Before the Peel</h4>
                             <p class="text-white">Evening at Hotel Granda and May Peel</p>
                         </div>
                         <p class="text-gray-500 italic">7:45pm @ Pom Court & Speakeasy</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 25: BBBB Event</h4>
+                    <div class="bg-gray-900 border border-gray-800 p-6 md:p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline', '_blank')">
+                        <div class="mb-4 md:mb-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">May 25: BBBB Event</h4>
                             <p class="text-white">Brunch, Bread, Butterflies & Beltline</p>
                         </div>
                         <p class="text-gray-500 italic">1:30pm @ Bread & Butterfly, then Beltline</p>
                     </div>
                 </div>
-                <div class="mobile-button-group mt-8 md:hidden">
-                    <a 
-                        href="#" 
-                        id="becomeCoHostLink" 
-                        class="mobile-button btn-secondary"
-                    >
-                        Become a Co-Host
-                    </a>
+                <div class="mt-12">
+                    <a href="#" id="coHostLink" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition font-semibold-button">Become a Co-Host</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black text-white py-12 font-regular-body">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-8">
+    <footer class="bg-black text-white py-8 md:py-12 font-regular-body">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="mb-6 md:mb-8">
                 <img src="images/logo.png" alt="Worthy Social Club Logo" class="mx-auto mb-4 max-w-xs">
             </div>
             <div class="space-y-4">
@@ -670,29 +543,6 @@
                 });
             }
         });
-    </script>
-
-    <!-- Mobile Video Debugging Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var video = document.getElementById('mobile-hero-video');
-        
-        // Logging video properties
-        console.log('Video src:', video.src);
-        console.log('Video readyState:', video.readyState);
-        console.log('Video networkState:', video.networkState);
-        
-        // Force video play on mobile
-        video.play().catch(function(error) {
-            console.error('Video play error:', error);
-        });
-
-        // Fallback for mobile browsers
-        if (video.paused) {
-            video.setAttribute('autoplay', '');
-            video.load();
-        }
-    });
     </script>
 </body>
 </html>
