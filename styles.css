@@ -987,6 +987,39 @@ main section.relative img {
 }
 
 @media screen and (max-width: 768px) {
+    /* Specific Styling for Become a Co-Host Button */
+    .flex.justify-center.space-x-4.mt-8 > a:last-child {
+        background-color: transparent !important;
+        color: #000000 !important;
+        border: 2px solid #000000 !important;
+        position: relative !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+    }
+
+    /* Button Hover Effect */
+    .flex.justify-center.space-x-4.mt-8 > a:last-child::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: #000000 !important;
+        transition: left 0.3s ease !important;
+        z-index: -1 !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover::before {
+        left: 0 !important;
+    }
+
+    .flex.justify-center.space-x-4.mt-8 > a:last-child:hover {
+        color: #ffffff !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
     /* Smaller Event Cards */
     #upcoming-events .grid {
         display: grid !important;
