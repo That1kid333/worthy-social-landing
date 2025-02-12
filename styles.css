@@ -677,130 +677,152 @@ main section.relative img {
 
 /* Fix mobile top section and event card sizing */
 @media screen and (max-width: 768px) {
-    /* Top Section Complete Fix */
-    body {
-        overflow-x: hidden !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Ensure first section is fully visible */
+    /* Top Section Fix */
     main > section:first-child {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        width: 100% !important;
         min-height: 100vh !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-    }
-
-    /* Fix for navigation and logo container */
-    main > section:first-child > div:first-child {
-        width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
+        justify-content: center !important;
         align-items: center !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Ensure logo and navigation are fully visible */
-    nav, 
-    .logo-container, 
-    .nav-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 10px 0 !important;
-    }
-
-    /* Logo specific styling */
-    .logo-container img {
-        max-width: 80% !important;
-        height: auto !important;
-        margin: 0 auto !important;
-    }
-
-    /* Video container fix */
-    .video-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
     }
 
     /* Ensure video is fully visible */
     video {
-        width: 100% !important;
+        max-width: 100% !important;
         max-height: 60vh !important;
         object-fit: cover !important;
-        margin: 0 !important;
-        padding: 0 !important;
     }
 
-    /* Prevent any potential horizontal scrolling */
+    /* Event Cards Uniform Sizing */
+    #upcoming-events .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    #upcoming-events .bg-gray-900 {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: 100% !important;
+        min-height: 300px !important;
+        width: 90% !important;
+        margin: 0 auto 1rem !important;
+        padding: 1.5rem !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Ensure consistent content layout within event cards */
+    #upcoming-events .bg-gray-900 > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-grow: 1 !important;
+    }
+
+    #upcoming-events .bg-gray-900 h4 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    #upcoming-events .bg-gray-900 p {
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Prevent content overflow */
     * {
         max-width: 100% !important;
         overflow-x: hidden !important;
-        box-sizing: border-box !important;
     }
 }
 
-/* Targeted mobile top section visibility fix */
 @media screen and (max-width: 768px) {
-    /* Comprehensive Top Section Mobile Fix */
+    /* Top Section Complete Visibility */
     body {
-        margin: 0 !important;
-        padding: 0 !important;
         overflow-x: hidden !important;
     }
 
     main > section:first-child {
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
         min-height: 100vh !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
         align-items: center !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        padding: 20px 0 !important;
+        width: 100% !important;
+    }
+
+    /* Ensure logo and top content are fully visible */
+    header, 
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center {
+        width: 100% !important;
+        max-width: 100% !important;
         overflow: visible !important;
     }
 
-    main > section:first-child > * {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    /* Navigation and Logo Container */
-    nav, 
-    .nav-container {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 10px 0 !important;
-    }
-
-    /* Video Container */
-    .video-container,
+    /* Video Sizing */
     video {
         width: 100% !important;
-        height: auto !important;
+        max-width: 100% !important;
         max-height: 60vh !important;
         object-fit: cover !important;
-        margin: 0 !important;
-        padding: 0 !important;
     }
 
-    /* Prevent any content overflow */
+    /* Uniform Event Cards */
+    #upcoming-events .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #upcoming-events .grid > div {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 90% !important;
+        margin: 0 auto 1rem !important;
+        padding: 1.5rem !important;
+        box-sizing: border-box !important;
+    }
+
+    #upcoming-events .bg-gray-900 {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        text-align: center !important;
+        height: auto !important;
+        min-height: 350px !important;
+        width: 100% !important;
+    }
+
+    /* Consistent Content Within Cards */
+    #upcoming-events .bg-gray-900 > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    #upcoming-events .bg-gray-900 h4 {
+        text-align: center !important;
+        margin-bottom: 0.75rem !important;
+        width: 100% !important;
+    }
+
+    #upcoming-events .bg-gray-900 p {
+        text-align: center !important;
+        margin-bottom: 0.75rem !important;
+        width: 100% !important;
+    }
+
+    /* Prevent any potential overflow */
     * {
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow-x: hidden !important;
     }
 }
