@@ -315,37 +315,35 @@
 
     <main>
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <video 
-                src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
-                autoplay 
-                loop 
-                muted 
-                playsinline 
-                class="absolute top-0 left-0 w-full h-full object-cover"
-            >
-                Your browser does not support the video tag.
-            </video>
-            <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-                <div class="text-center text-white max-w-2xl px-6">
-                    <div class="flex justify-center items-center h-full">
-                        <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto">
-                    </div>
-                    
+            <div class="video-container w-full">
+                <video 
+                    src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
+                    autoplay 
+                    loop 
+                    muted 
+                    playsinline
+                    class="w-full h-auto object-cover"
+                ></video>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="text-center px-4">
+                    <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto">
                     <p class="text-xl mb-4 font-semibold-tagline">People and places worthy of your time</p>
-                    
                     <h3 class="text-3xl font-bold mb-4 font-bold-heading">We're club-ish.</h3>
-                    
                     <div class="font-regular-body">
                         <p class="mb-4">If you call an organized calendar of fun events with cool people a "club" then yes, we're a club, but there's no secret handshake. Unless you want one, that would be kinda fun.</p>
-                        
                         <p class="mb-4">Really, this is just a scheduled opportunity to enjoy life together. You'll meet some great people, you'll get to do something fun, we'll get to enjoy your company, there will probably be some good food and drinks, and life won't be so lonely. You in?</p>
-                        
                         <p>We'll start workshopping those handshakes asap.</p>
                     </div>
-                    
                     <div class="mt-6 flex justify-center space-x-4">
                         <a href="#upcoming-events" class="border border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition font-light-italic">View upcoming events</a>
-                        <a href="#" id="requestInvitationMainLink" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition font-semibold-button">Request Invitation</a>
+                        <a 
+                            href="#" 
+                            id="requestInvitationMainLink" 
+                            class="inline-block bg-gold-600 text-black py-3 px-6 rounded-full text-lg font-semibold hover:bg-gold-700 transition-colors duration-300 mobile-button"
+                        >
+                            Request an Invitation
+                        </a>
                     </div>
                 </div>
             </div>
