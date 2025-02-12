@@ -4,8 +4,6 @@
   "description": "## Overview This is a landing page for Worthy Social Club, an exclusive, invitation-only social club that offers curated experiences and meaningful connections.",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./styles.css -o ./styles.css",
-    "watch": "npx tailwindcss -i ./styles.css -o ./styles.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
