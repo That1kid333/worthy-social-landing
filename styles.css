@@ -493,3 +493,97 @@ main section.relative img {
     display: block;
     filter: brightness(1.2) contrast(1.2);
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Video Section */
+    .relative.min-h-screen.w-full.overflow-hidden.flex.items-center {
+        min-height: 50vh !important;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Events Grid */
+    #upcoming-events .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Event Cards */
+    #upcoming-events .bg-gray-900 {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Headings */
+    h3.text-4xl {
+        font-size: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 90% !important;
+        margin: 10% auto !important;
+        padding: 15px !important;
+    }
+
+    /* Navigation and Layout */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* Text Adjustments */
+    .text-2xl {
+        font-size: 1.25rem !important;
+    }
+
+    /* Ensure video is responsive */
+    video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+    }
+
+    /* Buttons and Interaction Elements */
+    .btn, button {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Footer */
+    footer .container {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Prevent overflow */
+    * {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media screen and (max-width: 768px) {
+    a, button, input, select, textarea {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+}
+
+/* Additional mobile-specific tweaks */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px !important;
+    }
+
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.25rem !important;
+    }
+}
