@@ -587,3 +587,90 @@ main section.relative img {
         font-size: 1.25rem !important;
     }
 }
+
+/* Existing mobile responsiveness */
+@media screen and (max-width: 768px) {
+    /* Center all content */
+    body {
+        text-align: center !important;
+    }
+
+    /* Center justify content */
+    .container, 
+    #upcoming-events, 
+    main, 
+    section {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Event Cards Centering */
+    #upcoming-events .bg-gray-900 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* Center buttons and links */
+    .btn, 
+    button, 
+    a {
+        display: block !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: black !important;
+        color: white !important;
+        text-align: center !important;
+    }
+
+    /* Ensure all text is centered */
+    p, 
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    .text-white, 
+    .text-gray-500 {
+        text-align: center !important;
+    }
+
+    /* Paragraphs and descriptions */
+    .text-white, 
+    .text-gray-500 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Ensure images and videos are centered */
+    video, 
+    img {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Modal Centering */
+    .modal-content {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Calendly and External Links */
+    .group {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
