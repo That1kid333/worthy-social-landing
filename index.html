@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <meta name="HandheldFriendly" content="true">
     <meta name="mobile-web-app-capable" content="yes">
@@ -45,9 +45,26 @@
                             'accent': '#D4AF37',
                             'border': '#1F1F1F'
                         }
+                    },
+                    screens: {
+                        'xs': '375px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                        '2xl': '1536px'
                     }
                 }
-            }
+            },
+            variants: {
+                extend: {
+                    display: ['responsive'],
+                    padding: ['responsive'],
+                    margin: ['responsive']
+                }
+            },
+            plugins: [],
+            important: true
         }
     </script>
     <style>
