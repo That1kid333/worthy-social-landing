@@ -677,14 +677,14 @@ main section.relative img {
 
 /* Fix mobile top section and event card sizing */
 @media screen and (max-width: 768px) {
-    /* Top Section Complete Fix */
+    /* Comprehensive Top Section Fix with Additional Top Padding */
     body {
         overflow-x: hidden !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    /* Ensure first section is fully visible */
+    /* Ensure first section is fully visible with top padding */
     main > section:first-child {
         display: flex !important;
         flex-direction: column !important;
@@ -693,7 +693,7 @@ main section.relative img {
         width: 100% !important;
         min-height: 100vh !important;
         margin: 0 !important;
-        padding: 0 !important;
+        padding-top: 300px !important;
         overflow: visible !important;
     }
 
@@ -705,6 +705,10 @@ main section.relative img {
         align-items: center !important;
         margin: 0 !important;
         padding: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1000 !important;
     }
 
     /* Ensure logo and navigation are fully visible */
@@ -715,6 +719,7 @@ main section.relative img {
         max-width: 100% !important;
         margin: 0 !important;
         padding: 10px 0 !important;
+        background-color: white !important;
     }
 
     /* Logo specific styling */
