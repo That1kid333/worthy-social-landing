@@ -563,33 +563,30 @@
             // Form Submission Handlers
             const coHostForm = document.getElementById('coHostForm');
             if (coHostForm) {
-                coHostForm.addEventListener('submit', (e) => {
+                coHostForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const formData = new FormData(coHostForm);
                     const data = Object.fromEntries(formData.entries());
                     
-                    data.formType = 'co-host';
-
-                    fetch('https://hook.us1.make.com/0ciymzlu3n7qgiax2kgbgshu2a5y4hfg', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    .then(response => {
+                    try {
+                        const response = await fetch('https://hook.us2.make.com/u5gd84wwjuljraw57vg0j37uqiwvotzh', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
                         if (response.ok) {
-                            alert('Your co-host request has been submitted successfully!');
+                            alert('Thank you for your interest in co-hosting!');
                             coHostForm.reset();
-                            document.getElementById('coHostModal').style.display = 'none';
                         } else {
-                            throw new Error('Submission failed');
+                            alert('There was an error submitting your form. Please try again.');
                         }
-                    })
-                    .catch(error => {
+                    } catch (error) {
                         console.error('Error:', error);
-                        alert('There was a problem submitting your request. Please try again.');
-                    });
+                        alert('There was a network error. Please try again.');
+                    }
                 });
             }
         });
