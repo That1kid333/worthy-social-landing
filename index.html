@@ -273,20 +273,26 @@
     <main>
 
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
-                <video 
-                    autoplay 
-                    loop 
-                    muted 
-                    playsinline 
-                    webkit-playsinline
-                    x5-playsinline
-                    class="absolute top-0 left-0 w-full h-full object-cover"
-                    poster="https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.jpg"
-                >
-                    <source src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
+                <!-- Mobile Background Image -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center md:hidden" 
+                     style="background-image: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.jpg');">
+                </div>
+                <!-- Desktop Video -->
+                <div class="hidden md:block w-full h-full">
+                    <video 
+                        autoplay 
+                        loop 
+                        muted 
+                        playsinline 
+                        class="absolute top-0 left-0 w-full h-full object-cover"
+                    >
+                        <source src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <!-- Overlay for both mobile and desktop -->
+                <div class="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-10">
                 <div class="text-center text-white max-w-2xl px-6">
