@@ -17,41 +17,37 @@
     }
 
     .event-card.past-event {
-        @apply cursor-not-allowed opacity-70;
-        position: relative;
+        @apply cursor-not-allowed;
     }
 
     .event-card.past-event::before {
-        content: 'PAST EVENT';
-        @apply absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center text-white font-bold text-2xl z-10;
-        transform: translateY(0);
-        transition: opacity 0.3s ease;
-        opacity: 0;
+        content: '';
+        @apply absolute inset-0 bg-black bg-opacity-75 transition-all duration-500;
     }
 
     .event-card.past-event::after {
-        content: '';
-        @apply absolute inset-0 border-2 border-red-500 rounded-xl z-20;
-        animation: pulse 2s infinite;
+        content: 'PAST EVENT';
+        @apply absolute inset-0 flex items-center justify-center text-white font-bold text-2xl opacity-0 transition-all duration-500;
+        background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+        backdrop-filter: blur(4px);
+        transform: translateY(10px);
     }
 
     .event-card.past-event:hover::before {
-        opacity: 1;
+        @apply bg-opacity-90;
     }
 
-    @keyframes pulse {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        50% {
-            opacity: 0.5;
-            transform: scale(1.05);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .event-card.past-event:hover::after {
+        @apply opacity-100;
+        transform: translateY(0);
+    }
+
+    .event-card.past-event > * {
+        @apply transition-all duration-500;
+    }
+
+    .event-card.past-event:hover > * {
+        @apply opacity-30;
     }
 }
 
