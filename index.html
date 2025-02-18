@@ -273,15 +273,14 @@
     <main>
 
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <div class="absolute inset-0 w-full h-full z-0">
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                 <video 
                     src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" 
                     autoplay 
                     loop 
                     muted 
                     playsinline 
-                    class="w-full h-full object-cover"
-                    style="position: fixed;"
+                    class="absolute top-0 left-0 w-full h-full object-cover"
                 >
                     Your browser does not support the video tag.
                 </video>
@@ -312,7 +311,7 @@
             </div>
         </section>
 
-        <section id="upcoming-events" class="bg-black py-16">
+        <section id="upcoming-events" class="bg-black py-16 relative z-20">
             <div class="container mx-auto px-6 text-center">
                 <h3 class="text-4xl font-bold mb-12 text-white" style="font-family: 'JosefinSans-Bold', sans-serif;">Winter/Spring 2025 Events</h3>
                 <div class="mb-8">
@@ -418,7 +417,7 @@
         </section>
     </main>
 
-    <footer class="bg-black text-white py-12 font-regular-body">
+    <footer class="bg-black text-white py-12 font-regular-body relative z-20">
         <div class="container mx-auto px-6 text-center">
             <div class="mb-8">
                 <img src="images/logo.png" alt="Worthy Social Club Logo" class="mx-auto mb-4 max-w-xs">
