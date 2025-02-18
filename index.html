@@ -363,21 +363,21 @@
                     </div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park', '_blank')">
+                    <div class="event-card" data-event-date="2025-04-03" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park')">
                         <div class="mb-6">
                             <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">April Wednesdays: Park Walks</h4>
                             <p class="text-white">Weekly Walk at Chastain Park</p>
                         </div>
                         <p class="text-gray-500 italic">6:15pm @ Chastain Park (near The Chastain)</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in', '_blank')">
+                    <div class="event-card" data-event-date="2025-04-05" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in')">
                         <div class="mb-6">
                             <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 5: Girls Night In</h4>
                             <p class="text-white">Noir Night - Ladies Only</p>
                         </div>
                         <p class="text-gray-500 italic">7:30pm @ 99 West Paces</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park', '_blank')">
+                    <div class="event-card" data-event-date="2025-04-13" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park')">
                         <div class="mb-6">
                             <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 13: Dogwood Festival</h4>
                             <p class="text-white">Piedmont Park's Annual Celebration</p>
@@ -400,7 +400,7 @@
                         </div>
                         <p class="text-gray-500 italic">7:45pm @ Pom Court & Speakeasy</p>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline', '_blank')">
+                    <div class="event-card group" data-event-date="2025-05-25" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline')">
                         <div class="mb-6">
                             <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 25: BBBB Event</h4>
                             <p class="text-white">Brunch, Bread, Butterflies & Beltline</p>
@@ -431,7 +431,24 @@
     </footer>
 
     <script>
+        function handleEventClick(element, url) {
+            if (!element.classList.contains('past-event')) {
+                window.open(url, '_blank');
+            }
+        }
+
+        function checkPastEvents() {
+            const now = new Date();
+            document.querySelectorAll('.event-card').forEach(card => {
+                const eventDate = new Date(card.dataset.eventDate);
+                if (eventDate < now) {
+                    card.classList.add('past-event');
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            checkPastEvents(); // Check for past events when the page loads
             const requestInvitationMainLink = document.getElementById('requestInvitationMainLink');
             const invitationModal = document.getElementById('invitationModal');
             const closeModalButtons = invitationModal.querySelectorAll('.close, .modal-overlay');

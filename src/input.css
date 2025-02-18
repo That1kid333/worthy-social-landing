@@ -3,12 +3,37 @@
 @tailwind utilities;
 
 /* Custom styles */
-.desktop-button {
-    @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full transition-all duration-300 hover:bg-opacity-80;
-}
+@layer components {
+    .desktop-button {
+        @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full transition-all duration-300 hover:bg-opacity-80;
+    }
 
-.mobile-button {
-    @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full w-full mb-4 transition-all duration-300 hover:bg-opacity-80;
+    .mobile-button {
+        @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full w-full mb-4 transition-all duration-300 hover:bg-opacity-80;
+    }
+
+    .event-card {
+        @apply bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer relative overflow-hidden;
+    }
+
+    .event-card.past-event {
+        @apply cursor-not-allowed;
+    }
+
+    .event-card.past-event::before {
+        content: 'PAST EVENT';
+        @apply absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center text-white font-bold text-lg z-10;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .event-card.past-event:hover::before {
+        transform: translateY(0);
+    }
+
+    .event-card.past-event > * {
+        @apply opacity-50;
+    }
 }
 
 /* Add any other custom styles from your current CSS here */
