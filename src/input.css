@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.desktop-button {
+    @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full transition-all duration-300 hover:bg-opacity-80;
+}
+
+.mobile-button {
+    @apply bg-forward-accent text-black font-semibold py-2 px-6 rounded-full w-full mb-4 transition-all duration-300 hover:bg-opacity-80;
+}
+
+/* Add any other custom styles from your current CSS here */
