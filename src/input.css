@@ -17,22 +17,41 @@
     }
 
     .event-card.past-event {
-        @apply cursor-not-allowed;
+        @apply cursor-not-allowed opacity-70;
+        position: relative;
     }
 
     .event-card.past-event::before {
         content: 'PAST EVENT';
-        @apply absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center text-white font-bold text-lg z-10;
-        transform: translateY(100%);
-        transition: transform 0.3s ease;
+        @apply absolute inset-0 bg-black bg-opacity-90 flex items-center justify-center text-white font-bold text-2xl z-10;
+        transform: translateY(0);
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .event-card.past-event::after {
+        content: '';
+        @apply absolute inset-0 border-2 border-red-500 rounded-xl z-20;
+        animation: pulse 2s infinite;
     }
 
     .event-card.past-event:hover::before {
-        transform: translateY(0);
+        opacity: 1;
     }
 
-    .event-card.past-event > * {
-        @apply opacity-50;
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.05);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 }
 
