@@ -270,35 +270,14 @@
         </div>
     </div>
 
-    <main>
-
+    <main class="relative bg-black min-h-screen">
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
-            <!-- Main content container with higher z-index -->
-            <div class="relative w-full min-h-screen z-20">
-                <div class="absolute inset-0 flex items-center justify-center px-4">
-                    <div class="text-center text-white max-w-2xl">
-                        <div class="flex justify-center items-center h-full">
-                            <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" 
-                                alt="Worthy Social Club Logo" 
-                                class="w-full max-w-md mx-auto mb-8">
-                        </div>
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6" style="font-family: 'JosefinSans-Bold', sans-serif;">Welcome to Worthy Social Club</h1>
-                        <p class="text-lg md:text-xl mb-8">Join our community of like-minded individuals for meaningful connections and exclusive events.</p>
-                        <a href="#" 
-                            id="requestInvitationMainLink"
-                            class="inline-block bg-yellow-500 text-black px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition duration-300 text-lg">
-                            Request an Invitation
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Background layers with lower z-index -->
-            <div class="absolute inset-0 w-full h-full z-0">
-                <!-- Gradient background as base layer -->
+            <!-- Background container -->
+            <div class="fixed inset-0 w-full h-full overflow-hidden bg-black">
+                <!-- Fallback gradient background -->
                 <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
                 
-                <!-- Video/Image container -->
+                <!-- Video Background -->
                 <div id="videoContainer" class="absolute inset-0 bg-cover bg-center">
                     <video 
                         id="bgVideo"
@@ -306,44 +285,46 @@
                         loop 
                         muted 
                         playsinline 
-                        webkit-playsinline
-                        x5-playsinline
-                        class="absolute top-0 left-0 w-full h-full object-cover"
-                        style="background: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.png') center center / cover no-repeat;"
+                        class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
                     >
                         <source src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <!-- Dark overlay -->
-                <div class="absolute inset-0 bg-black opacity-60"></div>
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-black opacity-50"></div>
             </div>
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const video = document.getElementById('bgVideo');
-                    
-                    // Force play on mobile devices
-                    function attemptPlay() {
-                        video.play().catch(function(error) {
-                            console.log('Playback failed:', error);
-                            // Try again on user interaction
-                            document.addEventListener('touchstart', function() {
-                                video.play().catch(function(e) {
-                                    console.log('Playback failed after touch:', e);
-                                });
-                            }, { once: true });
-                        });
-                    }
+                    const container = document.getElementById('videoContainer');
 
-                    // Try to play immediately
-                    attemptPlay();
+                    // Add background image to container
+                    container.style.backgroundImage = 'url(https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.png)';
 
-                    // Try to play when video can play through
-                    video.addEventListener('canplaythrough', attemptPlay);
+                    // Show video when it can play
+                    video.addEventListener('canplay', function() {
+                        video.classList.remove('opacity-0');
+                    });
+
+                    // Handle video error
+                    video.addEventListener('error', function() {
+                        video.style.display = 'none';
+                    });
+
+                    // Force video play for mobile
+                    video.play().catch(function(error) {
+                        console.log('Video autoplay failed:', error);
+                    });
                 });
             </script>
-                <!-- Content moved to main container above -->
+
+            <!-- Content overlay -->
+            <div class="relative w-full h-full flex items-center justify-center z-10">
+                <div class="text-center text-white max-w-2xl px-6">
+                    <div class="flex justify-center items-center h-full">
+                        <img src="images/logo.png" alt="Worthy Social Club Logo" class="max-w-xs mx-auto">
                     </div>
                     
                     <p class="text-xl mb-4 font-semibold-tagline">People and places worthy of your time</p>
