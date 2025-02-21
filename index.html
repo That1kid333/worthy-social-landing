@@ -21,7 +21,6 @@
     <meta name="twitter:image" content="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png">
     <meta name="twitter:image:alt" content="Worthy Social Club Logo">
     
-    <link rel="preload" as="video" href="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="/dist/output.css" rel="stylesheet">
@@ -275,18 +274,24 @@
 
         <section class="relative min-h-screen w-full overflow-hidden flex items-center">
             <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
+                <!-- Background color as ultimate fallback -->
+                <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
+                
+                <!-- Video Background -->
                 <video 
                     id="bgVideo"
                     autoplay 
                     loop 
                     muted 
                     playsinline 
-                    class="absolute top-0 left-0 w-full h-full object-cover"
-                    poster="https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.jpg"
+                    class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                    poster="images/atlanta-poster.jpg"
+                    oncanplay="this.classList.remove('opacity-0')"
+                    onerror="this.style.display='none'"
                 >
                     <source src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
+
                 <!-- Overlay -->
                 <div class="absolute inset-0 bg-black opacity-50"></div>
             </div>
