@@ -306,7 +306,10 @@
                         loop 
                         muted 
                         playsinline 
-                        class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                        webkit-playsinline
+                        x5-playsinline
+                        class="absolute top-0 left-0 w-full h-full object-cover"
+                        style="background: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.png') center center / cover no-repeat;"
                     >
                         <source src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Atlanta.mp4" type="video/mp4">
                     </video>
@@ -319,25 +322,25 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const video = document.getElementById('bgVideo');
-                    const container = document.getElementById('videoContainer');
+                    
+                    // Force play on mobile devices
+                    function attemptPlay() {
+                        video.play().catch(function(error) {
+                            console.log('Playback failed:', error);
+                            // Try again on user interaction
+                            document.addEventListener('touchstart', function() {
+                                video.play().catch(function(e) {
+                                    console.log('Playback failed after touch:', e);
+                                });
+                            }, { once: true });
+                        });
+                    }
 
-                    // Add background image to container
-                    container.style.backgroundImage = 'url(https://worthysocialclub.blob.core.windows.net/worthysocialclub/atlanta-poster.png)';
+                    // Try to play immediately
+                    attemptPlay();
 
-                    // Show video when it can play
-                    video.addEventListener('canplay', function() {
-                        video.classList.remove('opacity-0');
-                    });
-
-                    // Handle video error
-                    video.addEventListener('error', function() {
-                        video.style.display = 'none';
-                    });
-
-                    // Force video play on mobile
-                    video.play().catch(function(error) {
-                        console.log('Video autoplay failed:', error);
-                    });
+                    // Try to play when video can play through
+                    video.addEventListener('canplaythrough', attemptPlay);
                 });
             </script>
                 <!-- Content moved to main container above -->
