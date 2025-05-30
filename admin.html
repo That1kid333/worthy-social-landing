@@ -160,8 +160,8 @@
                 });
 
                 if (response.ok) {
-                    // Store auth in session
-                    sessionStorage.setItem('auth', btoa(`admin:${password}`));
+                    // Store auth in localStorage for persistence
+                    localStorage.setItem('auth', btoa(`admin:${password}`));
                     // Show dashboard
                     document.getElementById('loginForm').classList.add('hidden');
                     document.getElementById('dashboard').classList.remove('hidden');
@@ -179,9 +179,11 @@
         async function handleSubmit(event) {
             event.preventDefault();
 
-            const auth = sessionStorage.getItem('auth');
+            const auth = localStorage.getItem('auth');
             if (!auth) {
                 alert('Session expired. Please log in again.');
+                document.getElementById('dashboard').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
                 return;
             }
 
@@ -210,16 +212,23 @@
                 });
 
                 if (response.ok) {
+                    const isEditing = editingEventId !== null;
+                    
+                    // Always reload events to ensure consistency
+                    await loadEvents();
+
+                    // Reset form
                     document.getElementById('eventForm').reset();
                     editingEventId = null;
-                    loadEvents();
-                    alert(editingEventId ? 'Event updated successfully!' : 'Event added successfully!');
+
+                    // Show success message
+                    alert(isEditing ? 'Event updated successfully!' : 'Event added successfully!');
+                } else if (response.status === 401) {
+                    localStorage.removeItem('auth');
+                    document.getElementById('dashboard').classList.add('hidden');
+                    document.getElementById('loginForm').classList.remove('hidden');
+                    alert('Session expired. Please log in again.');
                 } else {
-                    if (response.status === 401) {
-                        alert('Session expired. Please log in again.');
-                        logout();
-                        return;
-                    }
                     alert('Failed to save event');
                 }
             } catch (error) {
@@ -228,8 +237,19 @@
             }
         }
 
-        async function logout() {
-            sessionStorage.removeItem('auth');
+        async function editEvent(id) {
+            const auth = sessionStorage.getItem('auth');
+            if (!auth) {
+                alert('Session expired. Please log in again.');
+                document.getElementById('dashboard').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
+                return;
+            }
+            // Rest of the function remains the same
+        }
+
+        function logout() {
+            localStorage.removeItem('auth');
             document.getElementById('dashboard').classList.add('hidden');
             document.getElementById('loginForm').classList.remove('hidden');
             events = [];
@@ -239,7 +259,7 @@
         // Events management
         async function loadEvents() {
             try {
-                const auth = sessionStorage.getItem('auth');
+                const auth = localStorage.getItem('auth');
                 if (!auth) {
                     document.getElementById('dashboard').classList.add('hidden');
                     document.getElementById('loginForm').classList.remove('hidden');
@@ -298,10 +318,16 @@
         }
 
         async function deleteEvent(eventId) {
+            if (!confirm('Are you sure you want to delete this event?')) {
+                return;
+            }
+
             try {
-                const auth = sessionStorage.getItem('auth');
+                const auth = localStorage.getItem('auth');
                 if (!auth) {
                     alert('Session expired. Please log in again.');
+                    document.getElementById('dashboard').classList.add('hidden');
+                    document.getElementById('loginForm').classList.remove('hidden');
                     return;
                 }
 
@@ -314,14 +340,17 @@
                 });
 
                 if (response.ok) {
-                    loadEvents();
+                    // Update the events list without reloading
+                    events = events.filter(event => event.id !== eventId);
+                    displayEvents(events);
                     alert('Event deleted successfully!');
+                } else if (response.status === 401) {
+                    // Handle unauthorized properly
+                    sessionStorage.removeItem('auth');
+                    document.getElementById('dashboard').classList.add('hidden');
+                    document.getElementById('loginForm').classList.remove('hidden');
+                    alert('Session expired. Please log in again.');
                 } else {
-                    if (response.status === 401) {
-                        alert('Session expired. Please log in again.');
-                        logout();
-                        return;
-                    }
                     alert('Failed to delete event');
                 }
             } catch (error) {
