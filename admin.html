@@ -143,6 +143,24 @@
             }
         }
 
+        function convertTo12Hour(time24) {
+            if (!time24) return '';
+            
+            // If already in 12-hour format, return as is
+            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) return time24;
+            
+            try {
+                const [hours24, minutes] = time24.split(':');
+                const hours = parseInt(hours24);
+                const period = hours >= 12 ? 'PM' : 'AM';
+                const hours12 = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                return `${hours12}:${minutes} ${period}`;
+            } catch (error) {
+                return time24;
+            }
+            
+        }
+
         // Authentication
         async function login() {
             const password = document.getElementById('password').value;
@@ -238,14 +256,34 @@
         }
 
         async function editEvent(id) {
-            const auth = sessionStorage.getItem('auth');
+            const auth = localStorage.getItem('auth');
             if (!auth) {
                 alert('Session expired. Please log in again.');
                 document.getElementById('dashboard').classList.add('hidden');
                 document.getElementById('loginForm').classList.remove('hidden');
                 return;
             }
-            // Rest of the function remains the same
+
+            // Find the event in our local events array
+            const event = events.find(e => e.id === id);
+            if (!event) {
+                alert('Event not found');
+                return;
+            }
+
+            // Set the editing state
+            editingEventId = id;
+
+            // Populate the form
+            document.getElementById('title').value = event.title;
+            document.getElementById('date').value = event.date;
+            document.getElementById('time').value = convertTo12Hour(event.time);
+            document.getElementById('location').value = event.location;
+            document.getElementById('description').value = event.description;
+            document.getElementById('calendlyLink').value = event.calendly_link;
+
+            // Scroll to the form
+            document.getElementById('eventForm').scrollIntoView({ behavior: 'smooth' });
         }
 
         function logout() {
