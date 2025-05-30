@@ -9,271 +9,278 @@
     <link href="/dist/output.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         .hidden { display: none; }
+
+        /* Base styles */
         body {
-            font-family: Arial, sans-serif;
+            background-color: #343434;
+            color: white;
             margin: 0;
-            padding: 0;
-            background-color: #1a1f2e;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        input, textarea {
-            background-color: white;
-            border: 1px solid #ddd;
-            color: #333;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
         }
 
-        input:focus, textarea:focus {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Form elements */
+        input, textarea, select {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            padding: 8px 12px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #666;
+            box-shadow: 0 0 0 1px #777;
             outline: none;
-            border-color: #2196F3;
-            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+        }
+
+        /* Form layout */
+        .form-group {
+            margin-bottom: 20px;
         }
 
         label {
-            color: #333;
-            font-weight: 500;
-            margin-bottom: 8px;
             display: block;
-        }
-        .event-form {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ddd;
         }
 
-        .event-form h2 {
-            margin: 0 0 20px 0;
-            font-size: 1.5rem;
-            color: #333;
+        /* Cards */
+        .admin-card {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        .form-row {
-            display: flex;
-            gap: 20px;
+        .event-card {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 15px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-            flex: 1;
+        .event-card:hover {
+            border-color: #666;
+            transform: translateY(-2px);
         }
 
-        .form-actions {
-            margin-top: 30px;
-        }
-
+        /* Buttons */
         button {
-            background-color: #4CAF50;
+            background-color: #4a4a4a;
             color: white;
-            padding: 15px 25px;
             border: none;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            width: auto;
-            min-width: 120px;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s;
+            margin: 5px;
         }
 
-        .save-btn {
-            background-color: #2196F3;
+        button:hover {
+            background-color: #5a5a5a;
         }
 
-        .save-btn:hover {
-            background-color: #1976D2;
+        button.primary {
+            background-color: #2c5282;
         }
 
+        button.primary:hover {
+            background-color: #2b6cb0;
+        }
+
+        button.danger {
+            background-color: #822c2c;
+        }
+
+        button.danger:hover {
+            background-color: #b02b2b;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background-color: #1a1a1a;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        tr:hover {
+            background-color: #333;
+        }
+
+        /* Mobile styles */
         @media (max-width: 768px) {
-            .event-form {
-                padding: 20px;
-                margin: -10px -10px 20px -10px;
-                border-radius: 0;
+            body {
+                padding: 10px;
             }
 
-            .form-row {
-                flex-direction: column;
-                gap: 0;
+            .container {
+                padding: 10px;
             }
 
+            /* Form improvements */
             .form-group {
                 margin-bottom: 15px;
             }
 
-            .form-actions {
-                margin-top: 20px;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            button {
-                width: 100%;
-                padding: 15px;
+            input, textarea, select {
+                font-size: 16px; /* Prevents zoom on iOS */
                 margin-bottom: 10px;
             }
-        }
-        .admin-card {
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-            margin-bottom: 20px;
-            padding: 20px;
-        }
 
-        @media (max-width: 768px) {
-            .admin-card {
-                border-radius: 0;
-                margin: 0 -10px;
-                padding: 15px;
+            /* Table improvements */
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border-radius: 4px;
             }
-        }
-        .event-card {
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
 
-        .event-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .event-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0 0 15px 0;
-            color: #333;
-        }
-
-        .event-card p {
-            margin: 8px 0;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .event-card .meta {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .event-card .description {
-            margin: 15px 0;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        @media (max-width: 768px) {
-            .event-card {
-                margin: 0 0 15px 0;
-                padding: 15px;
+            th, td {
+                min-width: 120px;
+                white-space: nowrap;
+                font-size: 14px;
+                padding: 10px;
             }
-        }
-        .event-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
 
-        @media (max-width: 768px) {
+            /* Button improvements */
             .event-actions {
-                flex-direction: row;
-                gap: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin: 10px 0;
             }
 
             .event-actions button {
-                flex: 1;
+                width: 100%;
+                padding: 12px;
+                font-size: 16px;
                 margin: 0;
             }
+
+            /* Login form */
+            #loginForm {
+                padding: 20px;
+                max-width: 100%;
+                background-color: #2a2a2a;
+                border-radius: 8px;
+            }
+
+            /* Event cards */
+            .event-card {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
+
+            /* Typography */
+            h1 { 
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            h2 { 
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            h3 { 
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+        }
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+        }
+        .event-card:hover {
+            border-color: #666;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Login Form -->
-    <div id="loginForm" class="hidden">
-        <div class="logo-container">
-            <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" alt="Worthy Social Club Logo">
+    <div id="loginForm" class="min-h-screen flex flex-col items-center justify-center bg-gray-900">
+        <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/worthysocialclublogo_enlarged.png" alt="Worthy Social Club Logo" class="mb-8 w-64">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Admin Login</h2>
+            <div class="mb-6">
+                <label class="block text-gray-300 mb-2" for="password">Password</label>
+                <input type="password" id="password" class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+            </div>
+            <button onclick="login()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">Login</button>
         </div>
-        <h2>Admin Dashboard</h2>
-        <input type="password" id="password" placeholder="Enter password" required>
-        <button onclick="login()">Login</button>
     </div>
 
     <!-- Dashboard -->
-    <div id="dashboard" class="container hidden">
-        <div class="header-actions">
-            <h1>Event Management</h1>
-            <button onclick="logout()" class="logout-btn">Sign Out</button>
+    <div id="dashboard" class="hidden container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold mb-8" style="font-family: 'JennaSue', cursive;">E's Dashboard</h1>
+            <button onclick="logout()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300">Logout</button>
         </div>
 
         <!-- Add Event Form -->
         <div class="admin-card rounded-lg shadow-lg p-8 mb-8">
-
-            <form id="eventForm" class="event-form" onsubmit="handleSubmit(event)">
-                <h2>Add New Event</h2>
-                
-                <div class="form-group">
-                    <label for="title">Event Title</label>
-                    <input type="text" id="title" placeholder="Enter event title" required>
+            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Add New Event</h2>
+            <form id="eventForm" onsubmit="handleSubmit(event)" class="space-y-6">
+                <div>
+                    <label class="block text-gray-300 mb-2" for="title">Title</label>
+                    <input type="text" id="title" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="date" id="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="time">Time</label>
-                        <input type="time" id="time" required>
-                    </div>
+                <div>
+                    <label class="block text-gray-300 mb-2" for="date">Date</label>
+                    <input type="date" id="date" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
                 </div>
-
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" placeholder="Enter event location" required>
+                <div>
+                    <label class="block text-gray-300 mb-2" for="time">Time</label>
+                    <input type="time" id="time" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
                 </div>
-
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" placeholder="Enter event description" required></textarea>
+                <div>
+                    <label class="block text-gray-300 mb-2" for="location">Location</label>
+                    <input type="text" id="location" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
                 </div>
-
-                <div class="form-group">
-                    <label for="calendlyLink">Calendly Link</label>
-                    <input type="text" id="calendlyLink" placeholder="Enter Calendly booking link" required>
+                <div>
+                    <label class="block text-gray-300 mb-2" for="description">Description</label>
+                    <textarea id="description" required class="w-full px-4 py-3 rounded-lg bg-opacity-50 h-24"></textarea>
                 </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="save-btn">Save Event</button>
+                <div>
+                    <label class="block text-gray-300 mb-2" for="calendlyLink">Calendly Link</label>
+                    <input type="url" id="calendlyLink" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
                 </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">Save Event</button>
             </form>
         </div>
 
         <!-- Events List -->
-        <div id="eventsList" class="events-list">
+        <div id="eventsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Events will be loaded here -->
         </div>
     </div>
@@ -288,8 +295,10 @@
             if (!time24) return '';
             
             // If already in 12-hour format, return as is
-            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) return time24;
-            
+            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) {
+                return time24;
+            }
+
             try {
                 const [hours24, minutes] = time24.split(':');
                 const hours = parseInt(hours24);
@@ -323,34 +332,54 @@
             }
         }
 
+        function convertTo12Hour(time24) {
+            if (!time24) return '';
+            
+            // If already in 12-hour format, return as is
+            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) return time24;
+            
+            try {
+                const [hours24, minutes] = time24.split(':');
+                const hours = parseInt(hours24);
+                const period = hours >= 12 ? 'PM' : 'AM';
+                const hours12 = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                return `${hours12}:${minutes} ${period}`;
+            } catch (error) {
+                return time24;
+            }
+            
+        }
+
         // Authentication
         async function login() {
             const password = document.getElementById('password').value;
             if (!password) {
-                alert('Please enter password');
+                alert('Please enter a password');
                 return;
             }
 
             try {
                 const response = await fetch('/.netlify/functions/admin-events', {
-                    method: 'POST',
+                    method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Basic ${btoa(password)}`
-                    },
-                    body: JSON.stringify({ action: 'verify' })
+                        'Authorization': `Basic ${btoa(`admin:${password}`)}`
+                    }
                 });
 
                 if (response.ok) {
-                    localStorage.setItem('auth', btoa(password));
-                    showDashboard();
+                    // Store auth in localStorage for persistence
+                    localStorage.setItem('auth', btoa(`admin:${password}`));
+                    // Show dashboard
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('dashboard').classList.remove('hidden');
+                    // Load events
                     loadEvents();
                 } else {
                     alert('Invalid password');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred');
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
             }
         }
 
@@ -429,21 +458,43 @@
             }
         }
 
-        function showDashboard() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
-            document.getElementById('eventForm').classList.remove('hidden');
-        }
+        async function editEvent(id) {
+            const auth = localStorage.getItem('auth');
+            if (!auth) {
+                alert('Session expired. Please log in again.');
+                document.getElementById('dashboard').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
+                return;
+            }
 
-        function showLoginForm() {
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('eventForm').classList.add('hidden');
+            // Find the event in our local events array
+            const event = events.find(e => e.id === id);
+            if (!event) {
+                alert('Event not found');
+                return;
+            }
+
+            // Set the editing state
+            editingEventId = id;
+
+            // Populate the form
+            document.getElementById('title').value = event.title;
+            document.getElementById('date').value = event.date;
+            document.getElementById('time').value = convertTo12Hour(event.time);
+            document.getElementById('location').value = event.location;
+            document.getElementById('description').value = event.description;
+            document.getElementById('calendlyLink').value = event.calendly_link;
+
+            // Scroll to the form
+            document.getElementById('eventForm').scrollIntoView({ behavior: 'smooth' });
         }
 
         function logout() {
             localStorage.removeItem('auth');
-            showLoginForm();
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            events = [];
+            displayEvents(events);
         }
 
         // Events management
@@ -464,7 +515,7 @@
 
                 if (response.status === 401) {
                     // Session expired
-                    localStorage.removeItem('auth');
+                    sessionStorage.removeItem('auth');
                     document.getElementById('dashboard').classList.add('hidden');
                     document.getElementById('loginForm').classList.remove('hidden');
                     alert('Session expired. Please log in again.');
@@ -491,19 +542,17 @@
         function displayEvents(events) {
             const eventsList = document.getElementById('eventsList');
             eventsList.innerHTML = events.map(event => `
-                <div class="event-card">
-                    <h3>${event.title}</h3>
-                    <div class="meta">
-                        <p>📅 ${event.date} at ${convertTo12Hour(event.time)}</p>
-                        <p>📍 ${event.location}</p>
+                <div class="event-card rounded-lg shadow-lg p-6">
+                    <div class="mb-4">
+                        <h3 class="text-2xl mb-2" style="font-family: 'JennaSue', cursive;">${event.title}</h3>
+                        <p class="text-gray-400">${event.date} at ${convertTo12Hour(event.time)}</p>
+                        <p class="text-gray-400">${event.location}</p>
+                        <p class="text-gray-300 mt-3">${event.description}</p>
+                        <p class="text-blue-400 mt-3"><a href="${event.calendly_link}" target="_blank" class="hover:text-blue-300 transition duration-300">Calendly Link →</a></p>
                     </div>
-                    <div class="description">
-                        <p>${event.description}</p>
-                        <p><a href="${event.calendly_link}" target="_blank" rel="noopener noreferrer">📅 RSVP Link</a></p>
-                    </div>
-                    <div class="event-actions">
-                        <button onclick="editEvent('${event.id}')" class="edit-btn">Edit</button>
-                        <button onclick="deleteEvent('${event.id}')" class="delete-btn">Delete</button>
+                    <div class="space-x-3 mt-6">
+                        <button onclick="editEvent('${event.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Edit</button>
+                        <button onclick="deleteEvent('${event.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">Delete</button>
                     </div>
                 </div>
             `).join('');
