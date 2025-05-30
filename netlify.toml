@@ -11,8 +11,18 @@
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src fonts.gstatic.com; img-src 'self' data: worthysocialclub.blob.core.windows.net; media-src worthysocialclub.blob.core.windows.net"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/public/events"
+  to = "/.netlify/functions/events"
+  status = 200
+
+[[redirects]]
+  from = "/api/events"
+  to = "/.netlify/functions/admin-events"
+  status = 200
+
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/auth"
   status = 200
 
 [[redirects]]
