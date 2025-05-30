@@ -9,30 +9,176 @@
     <link href="/dist/output.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <style>
-        .hidden { display: none; }
-        body {
-            font-family: Arial, sans-serif;
+        .hidden { display: none !important; }
+        
+        @media (max-width: 768px) {
+            body {
+                margin: 0;
+                padding: 0;
+                background: #f5f5f5;
+            }
+
+            .dashboard-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .dashboard-header h1 {
+                margin: 0;
+                font-size: 20px;
+            }
+
+            .dashboard-content {
+                margin-top: 60px;
+                padding: 15px;
+            }
+
+            #eventForm {
+                background: white;
+                padding: 20px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .event-item {
+                background: white;
+                padding: 15px;
+                border-radius: 12px;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .event-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .event-actions button {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+        }
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
             background-color: #1a1f2e;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .page-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #1a1f2e;
+        }
+
+        .login-form-content {
+            width: 90%;
+            max-width: 360px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         input, textarea {
             background-color: #444;
             border-color: #555;
             color: white;
         }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #666;
-            box-shadow: 0 0 0 1px #777;
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        #eventForm {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #eventForm input,
+        #eventForm textarea {
+            background: white;
+            border: 1px solid #ddd;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        #eventForm input::placeholder {
+            color: #999;
+        }
+
+        #eventForm label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
         .admin-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
         }
+
         .event-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -45,65 +191,68 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Login Form -->
-    <div id="loginForm" class="hidden">
-        <div class="logo-container">
-            <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" alt="Worthy Social Club Logo">
-        </div>
-        <h2>Admin Dashboard</h2>
-        <input type="password" id="password" placeholder="Enter password" required>
-        <button onclick="login()">Login</button>
-    </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="container hidden">
-        <div class="header-actions">
-            <h1>Event Management</h1>
-            <button onclick="logout()" class="logout-btn">Logout</button>
+    <div class="page-container">
+        <!-- Login Form -->
+        <div id="loginForm" class="hidden">
+            <div class="logo-container">
+                <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" alt="Worthy Social Club Logo">
+            </div>
+            <div class="login-form-content">
+                <h2>Admin Dashboard</h2>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <button onclick="login()" class="gold-button">Login</button>
+            </div>
         </div>
 
-        <!-- Add Event Form -->
-        <div class="admin-card rounded-lg shadow-lg p-8 mb-8">
-            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Add New Event</h2>
-            <form id="eventForm" onsubmit="handleSubmit(event)" class="space-y-6">
-                <div>
-                    <label class="block text-gray-300 mb-2" for="title">Title</label>
-                    <input type="text" id="title" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+        <!-- Dashboard -->
+        <div id="dashboard" class="hidden">
+            <div class="dashboard-header">
+                <h1>Event Management</h1>
+                <button onclick="logout()" class="logout-btn">Sign Out</button>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Add Event Form -->
+                <form id="eventForm" class="hidden" onsubmit="handleSubmit(event)">
+                    <h2>Add New Event</h2>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" required placeholder="Event title">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" required placeholder="Event location">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" required placeholder="Event description" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="calendlyLink">Calendly Link</label>
+                        <input type="text" id="calendlyLink" required placeholder="https://calendly.com/...">
+                    </div>
+                    <button type="submit" class="gold-button">Save Event</button>
+                </form>
+
+                <!-- Events List -->
+                <div id="eventsList" class="events-list">
+                    <!-- Events will be loaded here -->
                 </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="date">Date</label>
-                    <input type="date" id="date" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-                </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="time">Time</label>
-                    <input type="time" id="time" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-                </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="location">Location</label>
-                    <input type="text" id="location" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-                </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="description">Description</label>
-                    <textarea id="description" required class="w-full px-4 py-3 rounded-lg bg-opacity-50 h-24"></textarea>
-                </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="calendlyLink">Calendly Link</label>
-                    <input type="url" id="calendlyLink" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">Save Event</button>
-            </form>
+            </div>
         </div>
 
-        <!-- Events List -->
-        <div id="eventsList" class="events-list">
-            <!-- Events will be loaded here -->
-        </div>
-    </div>
-
-    <script>
-        // State management
-        let events = [];
-        let editingEventId = null;
+        <script>
+            // State management
+            let events = [];
+            let editingEventId = null;
 
         // Time conversion utilities
         function convertTo12Hour(time24) {
@@ -182,34 +331,32 @@
             const auth = localStorage.getItem('auth');
             if (!auth) {
                 alert('Session expired. Please log in again.');
-                document.getElementById('dashboard').classList.add('hidden');
-                document.getElementById('loginForm').classList.remove('hidden');
+                showLoginForm();
                 return;
             }
-
-            // Validate required fields
-            const title = document.getElementById('title').value.trim();
-            const date = document.getElementById('date').value.trim();
-            const time = document.getElementById('time').value.trim();
-            const location = document.getElementById('location').value.trim();
-            const description = document.getElementById('description').value.trim();
-            const calendly_link = document.getElementById('calendlyLink').value.trim();
-
-            if (!title || !date || !time || !location || !description || !calendly_link) {
-                alert('Please fill in all required fields');
-                return;
-            }
-
-            const formData = {
-                title,
-                date,
-                time: convertTo24Hour(time),
-                location,
-                description,
-                calendly_link
-            };
 
             try {
+                const title = document.getElementById('title').value.trim();
+                const date = document.getElementById('date').value.trim();
+                const time = document.getElementById('time').value.trim();
+                const location = document.getElementById('location').value.trim();
+                const description = document.getElementById('description').value.trim();
+                const calendly_link = document.getElementById('calendlyLink').value.trim();
+
+                if (!title || !date || !time || !location || !description || !calendly_link) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                const formData = {
+                    title,
+                    date,
+                    time: convertTo24Hour(time),
+                    location,
+                    description,
+                    calendly_link
+                };
+
                 const method = editingEventId ? 'PUT' : 'POST';
                 const url = editingEventId 
                     ? `/.netlify/functions/admin-events?id=${editingEventId}`
@@ -236,10 +383,12 @@
 
                     // Show success message
                     alert(isEditing ? 'Event updated successfully!' : 'Event added successfully!');
+
+                    // Scroll to events list
+                    document.getElementById('eventsList').scrollIntoView({ behavior: 'smooth' });
                 } else if (response.status === 401) {
                     localStorage.removeItem('auth');
-                    document.getElementById('dashboard').classList.add('hidden');
-                    document.getElementById('loginForm').classList.remove('hidden');
+                    showLoginForm();
                     alert('Session expired. Please log in again.');
                 } else {
                     const errorData = await response.json().catch(() => ({}));
@@ -255,6 +404,10 @@
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('eventForm').classList.remove('hidden');
+            // Add a small delay to ensure smooth transition
+            setTimeout(() => {
+                document.getElementById('eventsList').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         }
 
         function showLoginForm() {
@@ -315,12 +468,14 @@
             eventsList.innerHTML = events.map(event => `
                 <div class="event-item">
                     <div class="event-content">
-                        <p><strong>Title:</strong> ${event.title}</p>
-                        <p><strong>Date:</strong> ${event.date}</p>
-                        <p><strong>Time:</strong> ${convertTo12Hour(event.time)}</p>
-                        <p><strong>Location:</strong> ${event.location}</p>
-                        <p><strong>Description:</strong> ${event.description}</p>
-                        <p><strong>Calendly:</strong> <a href="${event.calendly_link}" target="_blank" rel="noopener noreferrer">${new URL(event.calendly_link).pathname.split('/').pop()}</a></p>
+                        <h3 class="event-title">${event.title}</h3>
+                        <div class="event-meta">
+                            <p><strong>📅 </strong>${formatDate(event.date)}</p>
+                            <p><strong>🕒 </strong>${convertTo12Hour(event.time)}</p>
+                            <p><strong>📍 </strong>${event.location}</p>
+                        </div>
+                        <p class="event-description">${event.description}</p>
+                        <a href="${event.calendly_link}" target="_blank" rel="noopener noreferrer" class="calendly-link">📅 RSVP on Calendly</a>
                     </div>
                     <div class="event-actions">
                         <button onclick="editEvent('${event.id}')" class="edit-btn">Edit</button>
