@@ -1,0 +1,119 @@
+[
+  {
+    "id": "1",
+    "title": "Wine Exchange",
+    "date": "2025-02-14",
+    "time": "8:00pm",
+    "location": "123 West Ridge Way, Roswell",
+    "description": "Take Home the One You Love - An intimate wine tasting event",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting"
+  },
+  {
+    "id": "2",
+    "title": "Babes Brunch",
+    "date": "2025-02-22",
+    "time": "12:00pm",
+    "location": "Le Bon Nosh",
+    "description": "Ladies Only Brunch Event",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch"
+  },
+  {
+    "id": "3",
+    "title": "Rock Band Karaoke",
+    "date": "2025-03-08",
+    "time": "21:00",
+    "location": "Dark Horse Tavern",
+    "description": "Unleash your inner rockstar at Dark Horse Tavern",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/rock-band-karaoke"
+  },
+  {
+    "id": "4",
+    "title": "Yoga & Dinner",
+    "date": "2025-03-11",
+    "time": "18:15",
+    "location": "CorePower Yoga Buckhead & True Food Kitchen",
+    "description": "CorePower Yoga followed by True Food Kitchen",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/corepower-yoga-sculpt-dinner-at-true-food-kitchen"
+  },
+  {
+    "id": "6",
+    "title": "Family Dinner",
+    "date": "2025-03-30",
+    "time": "17:30",
+    "location": "123 West Ridge Way, Roswell",
+    "description": "Spaghetti Bolognese Gathering",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/family-dinner-a-la-bolognese"
+  },
+  {
+    "id": "7",
+    "title": "April Wednesdays: Park Walks",
+    "date": "2025-04-03",
+    "time": "18:15",
+    "location": "Chastain Park (near The Chastain)",
+    "description": "Weekly Walk at Chastain Park",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park"
+  },
+  {
+    "id": "8",
+    "title": "Girls Night In",
+    "date": "2025-04-04",
+    "time": "19:30",
+    "location": "99 West Paces",
+    "description": "Noir Night - Ladies Only",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in"
+  },
+  {
+    "id": "9",
+    "title": "Dogwood Festival",
+    "date": "2025-04-13",
+    "time": "13:30",
+    "location": "Piedmont Park (near Park Tavern)",
+    "description": "Piedmont Park's Annual Celebration",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park"
+  },
+  {
+    "id": "10",
+    "title": "Cinco de Mayo",
+    "date": "2025-05-05",
+    "time": "19:00",
+    "location": "Location TBD",
+    "description": "Fiesta Celebration",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/fiesta-feast"
+  },
+  {
+    "id": "11",
+    "title": "Pom Before the Peel",
+    "date": "2025-05-16",
+    "time": "19:45",
+    "location": "Pom Court & Speakeasy",
+    "description": "Evening at Hotel Granda and May Peel",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/pom-before-the-peel"
+  },
+  {
+    "id": "12",
+    "title": "BBBB Event",
+    "date": "2025-05-25",
+    "time": "13:30",
+    "location": "Bread & Butterfly, then Beltline",
+    "description": "Brunch, Bread, Butterflies & Beltline",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline"
+  },
+  {
+    "id": "1748567379769",
+    "title": "Babes Brunch",
+    "date": "2025-03-16",
+    "time": "1:30pm",
+    "location": "The Daily Buckhead",
+    "description": "Ladies Only Brunch Event",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch"
+  },
+  {
+    "id": "1748571068398",
+    "title": "Test",
+    "date": "2025-05-29",
+    "time": "11:11pm",
+    "location": "Atlanta, GA",
+    "description": "Testing",
+    "calendlyLink": "https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting"
+  }
+]

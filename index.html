@@ -46,6 +46,50 @@
             max-width: 500px;
             border-radius: 8px;
         }
+        .event-card {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .event-card.past-event:hover::before {
+            content: 'PAST EVENT';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        .event-card h4 {
+            font-size: 1.75rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .event-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .event-card .event-description {
+            margin: 0.75rem 0;
+        }
+        .event-card .event-meta {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #fbfbfb;
@@ -323,101 +367,85 @@
                     <p class="text-white font-semibold-button text-center">Please follow the links through Calendly to RSVP</p>
                     <p class="text-white font-semibold-button text-center">ALL EVENTS REQUIRE AN RSVP</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="event-card group" data-event-date="2025-02-14" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Feb 14: Wine Exchange</h4>
-                            <p class="text-white">Take Home the One You Love - An intimate wine tasting event</p>
-                        </div>
-                        <p class="text-gray-500 italic">8:00pm @ 123 West Ridge Way, Roswell</p>
+                <div class="max-w-6xl mx-auto">
+                    <div id="events-grid" class="grid md:grid-cols-3 gap-8 mt-8">
+                        <!-- Events will be loaded dynamically -->
                     </div>
-                    <div class="event-card group" data-event-date="2025-02-22" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Feb 22: Babes Brunch</h4>
-                            <p class="text-white">Ladies Only Brunch Event</p>
-                        </div>
-                        <p class="text-gray-500 italic">12:00pm @ Le Bon Nosh</p>
-                    </div>
-                    <div class="event-card group" data-event-date="2025-03-08" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/rock-band-karaoke')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 8: Rock Band Karaoke</h4>
-                            <p class="text-white">Unleash your inner rockstar at Dark Horse Tavern</p>
-                        </div>
-                        <p class="text-gray-500 italic">9:00pm @ Dark Horse Tavern</p>
+                    <div class="mt-16 text-center">
+                        <a href="#" id="requestInvitationLink" class="inline-block border-2 border-yellow-500 text-yellow-500 px-8 py-4 rounded-full hover:bg-yellow-500 hover:text-black transition duration-300 font-semibold-button text-lg">Become a Cohost</a>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="event-card group" data-event-date="2025-03-11" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/corepower-yoga-sculpt-dinner-at-true-food-kitchen')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 11: Yoga & Dinner</h4>
-                            <p class="text-white">CorePower Yoga followed by True Food Kitchen</p>
-                        </div>
-                        <p class="text-gray-500 italic">6:15pm @ CorePower Yoga Buckhead & True Food Kitchen</p>
-                    </div>
-                    <div class="event-card group" data-event-date="2025-03-16" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/babes-brunch-1')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 16: Babes Brunch</h4>
-                            <p class="text-white">Ladies Only Brunch Event</p>
-                        </div>
-                        <p class="text-gray-500 italic">1:30pm @ The Daily Buckhead</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/family-dinner-a-la-bolognese', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Mar 30: Family Dinner</h4>
-                            <p class="text-white">Spaghetti Bolognese Gathering</p>
-                        </div>
-                        <p class="text-gray-500 italic">5:30pm @ 123 West Ridge Way, Roswell</p>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="event-card" data-event-date="2025-04-03" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/wednesday-walk-in-chastain-park')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">April Wednesdays: Park Walks</h4>
-                            <p class="text-white">Weekly Walk at Chastain Park</p>
-                        </div>
-                        <p class="text-gray-500 italic">6:15pm @ Chastain Park (near The Chastain)</p>
-                    </div>
-                    <div class="event-card" data-event-date="2025-04-04" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/girls-night-in')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 4: Girls Night In</h4>
-                            <p class="text-white">Noir Night - Ladies Only</p>
-                        </div>
-                        <p class="text-gray-500 italic">7:30pm @ 99 West Paces</p>
-                    </div>
-                    <div class="event-card" data-event-date="2025-04-13" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/dogwood-festival-at-piedmont-park')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">Apr 13: Dogwood Festival</h4>
-                            <p class="text-white">Piedmont Park's Annual Celebration</p>
-                        </div>
-                        <p class="text-gray-500 italic">1:30pm @ Piedmont Park (near Park Tavern)</p>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/fiesta-feast', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 5: Cinco de Mayo</h4>
-                            <p class="text-white">Fiesta Celebration</p>
-                        </div>
-                        <p class="text-gray-500 italic">7:00pm @ Location TBD</p>
-                    </div>
-                    <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl transition-all duration-300 cursor-pointer group" onclick="window.open('https://calendly.com/elizabeth-myworthyevent-j_0a/pom-before-the-peel', '_blank')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 16: Pom Before the Peel</h4>
-                            <p class="text-white">Evening at Hotel Granda and May Peel</p>
-                        </div>
-                        <p class="text-gray-500 italic">7:45pm @ Pom Court & Speakeasy</p>
-                    </div>
-                    <div class="event-card group" data-event-date="2025-05-25" onclick="handleEventClick(this, 'https://calendly.com/elizabeth-myworthyevent-j_0a/bbbb-brunch-bread-butterflies-beltline')">
-                        <div class="mb-6">
-                            <h4 class="text-2xl font-semibold mb-2" style="font-family: 'JennaSue', cursive;">May 25: BBBB Event</h4>
-                            <p class="text-white">Brunch, Bread, Butterflies & Beltline</p>
-                        </div>
-                        <p class="text-gray-500 italic">1:30pm @ Bread & Butterfly, then Beltline</p>
-                    </div>
-                </div>
-                <div class="mt-12">
-                    <a href="#" id="coHostLink" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition font-semibold-button">Become a Co-Host</a>
-                </div>
+
+                <script>
+                    function convertTo24Hour(time12h) {
+                        if (!time12h) return '00:00';
+                        
+                        // If it's already in 24-hour format (e.g., "21:00")
+                        if (time12h.match(/^\d{2}:\d{2}$/)) return time12h;
+                        
+                        // Handle formats like "1:30pm", "12:00pm", etc.
+                        const timeStr = time12h.toLowerCase().trim();
+                        const isPM = timeStr.endsWith('pm');
+                        const timeOnly = timeStr.replace(/[ap]m$/, '').trim();
+                        
+                        let [hours, minutes] = timeOnly.split(':').map(num => parseInt(num));
+                        
+                        // Convert to 24-hour format
+                        if (isPM && hours !== 12) hours += 12;
+                        if (!isPM && hours === 12) hours = 0;
+                        
+                        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                    }
+
+                    function isPastEvent(eventDate) {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        const eventDateTime = new Date(eventDate);
+                        return eventDateTime < today;
+                    }
+
+                    function sortEvents(events) {
+                        return events.sort((a, b) => {
+                            const dateTimeA = new Date(a.date + 'T' + convertTo24Hour(a.time));
+                            const dateTimeB = new Date(b.date + 'T' + convertTo24Hour(b.time));
+                            return dateTimeA - dateTimeB;
+                        });
+                    }
+
+                    async function loadEvents() {
+                        try {
+                            const response = await fetch('/api/public/events');
+                            const events = await response.json();
+                            const eventsGrid = document.getElementById('events-grid');
+                            const sortedEvents = sortEvents(events);
+                            
+                            eventsGrid.innerHTML = sortedEvents.map(event => {
+                                const eventDate = new Date(event.date);
+                                const formattedDate = eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                                
+                                return `
+                                    <div class="event-card group ${isPastEvent(event.date) ? 'past-event' : ''}" data-event-date="${event.date}">
+                                        <div>
+                                            <h4 style="font-family: 'JennaSue', cursive;">${formattedDate}: ${event.title}</h4>
+                                            <p class="event-description text-white">${event.description}</p>
+                                        </div>
+                                        <div>
+                                            <p class="event-meta text-gray-500">${event.time} @ ${event.location}</p>
+                                            ${!isPastEvent(event.date) ? 
+                                                `<p class="text-blue-400 mt-2 cursor-pointer hover:text-blue-300 transition duration-300" onclick="window.open('${event.calendlyLink}', '_blank')">RSVP →</p>` : ''
+                                            }
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('');
+                        } catch (error) {
+                            console.error('Error loading events:', error);
+                        }
+                    }
+
+                    // Load events when the page loads
+                    loadEvents();
+                </script>
             </div>
         </section>
     </main>
