@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://social.worthypros.com; img-src 'self' https://worthysocialclub.blob.core.windows.net data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: fonts.gstatic.com http://localhost:8888; script-src 'self' 'unsafe-inline';">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://social.worthypros.com; img-src 'self' https://worthysocialclub.blob.core.windows.net data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com http://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com https://worthysocialclub.blob.core.windows.net http://localhost:8888; script-src 'self' 'unsafe-inline';">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'JennaSue';
-            src: url('/fonts/JennaSue.ttf') format('truetype');
+            src: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/JennaSue.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Josefin Sans';
+            src: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/JosefinSans-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Josefin Sans';
+            src: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/JosefinSans-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Josefin Sans';
+            src: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/JosefinSans-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Josefin Sans';
+            src: url('https://worthysocialclub.blob.core.windows.net/worthysocialclub/JosefinSans-LightItalic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
             font-display: swap;
         }
 
@@ -273,43 +306,58 @@
     <div id="dashboard" class="hidden container mx-auto px-4 py-8">
         <div class="dashboard-header flex justify-between items-center mb-8 hidden">
             <h1 class="text-4xl font-bold font-jenna">E's Dashboard</h1>
-            <button onclick="logout()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300">Logout</button>
+            <div class="flex items-center gap-4">
+                <button onclick="openModal(false)" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Add New Event</button>
+                <button onclick="logout()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300">Logout</button>
+            </div>
         </div>
 
-        <div class="event-form-container bg-gray-800 p-6 rounded-lg shadow-lg mb-8 hidden">
-            <h2 class="text-2xl font-bold mb-4">Add/Edit Event</h2>
-            <form id="eventForm" onsubmit="handleSubmit(event)" class="space-y-6">
+        <!-- Modal Background -->
+        <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-95 hidden flex items-center justify-center overflow-y-auto" style="z-index: 1000000;">
+            <div class="w-full max-w-2xl mx-auto px-4 py-6">
+                <div class="bg-gray-800 p-4 rounded-lg shadow-xl w-full">
+                <div class="relative">
+                <h2 class="text-xl font-bold mb-3 font-jenna text-left">Add/Edit Event</h2>
+                <form id="eventForm" onsubmit="handleSubmit(event)" class="space-y-2">
                 <div>
-                    <label class="block text-gray-300 mb-2" for="title">Title</label>
-                    <input type="text" id="title" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+                    <label class="block text-gray-300 mb-1 text-sm text-left" for="title">Title</label>
+                    <input type="text" id="title" required class="w-full px-3 py-1.5 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-300 mb-1 text-sm text-left" for="date">Date</label>
+                        <input type="date" id="date" required class="w-full px-3 py-1.5 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-1 text-sm text-left" for="time">Time</label>
+                        <input type="time" id="time" required class="w-full px-3 py-1.5 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200">
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-gray-300 mb-2" for="date">Date</label>
-                    <input type="date" id="date" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+                    <label class="block text-gray-300 mb-1 text-sm text-left" for="location">Location</label>
+                    <input type="text" id="location" required class="w-full px-3 py-1.5 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200">
                 </div>
                 <div>
-                    <label class="block text-gray-300 mb-2" for="time">Time</label>
-                    <input type="time" id="time" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+                    <label class="block text-gray-300 mb-1 text-sm text-left" for="description">Description</label>
+                    <textarea id="description" required class="w-full px-3 py-1.5 rounded h-16 bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none"></textarea>
                 </div>
                 <div>
-                    <label class="block text-gray-300 mb-2" for="location">Location</label>
-                    <input type="text" id="location" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
+                    <label class="block text-gray-300 mb-1 text-sm text-left" for="calendlyLink">Calendly Link</label>
+                    <input type="url" id="calendlyLink" required class="w-full px-3 py-1.5 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200">
                 </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="description">Description</label>
-                    <textarea id="description" required class="w-full px-4 py-3 rounded-lg bg-opacity-50 h-24"></textarea>
+                <div class="flex justify-end gap-2 mt-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-1.5 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 transition duration-300">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition duration-300">Save</button>
                 </div>
-                <div>
-                    <label class="block text-gray-300 mb-2" for="calendlyLink">Calendly Link</label>
-                    <input type="url" id="calendlyLink" required class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">Save Event</button>
             </form>
+                </div>
+                </div>
+            </div>
         </div>
 
         <!-- Events List -->
-        <div id="eventsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Events will be loaded here -->
+        <div id="eventsList" class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8" style="position: relative; z-index: 1;">
+            <!-- Events will be dynamically inserted here -->
         </div>
     </div>
 
@@ -317,48 +365,27 @@
         let editingEventId = null;
         let events = [];
 
-        function toggleEventForm() {
-            const eventForm = document.querySelector('.event-form-container');
-            const isHidden = eventForm.classList.contains('hidden-mobile');
-            
-            if (isHidden) {
-                eventForm.classList.remove('hidden-mobile');
-                eventForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                eventForm.classList.add('hidden-mobile');
+        function openModal(isEdit = false) {
+            const modal = document.getElementById('eventModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                if (!isEdit) {
+                    const form = document.getElementById('eventForm');
+                    if (form) form.reset();
+                }
+                editingEventId = null;
             }
-            
-            // Update button text
-            const toggleBtn = document.getElementById('toggleFormBtn');
-            toggleBtn.textContent = isHidden ? 'Hide Form' : 'Add New Event';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('eventModal');
+            modal.style.display = 'none';
+            return;
         }
 
         function checkMobileAndInit() {
-            const isMobile = window.innerWidth <= 768;
-            const eventForm = document.querySelector('.event-form-container');
-            const dashboard = document.getElementById('dashboard');
-            const isLoggedIn = dashboard && !dashboard.classList.contains('hidden');
-            
-            if (isMobile && isLoggedIn) {
-                // Add toggle button if it doesn't exist
-                if (!document.getElementById('toggleFormBtn')) {
-                    const toggleBtn = document.createElement('button');
-                    toggleBtn.id = 'toggleFormBtn';
-                    toggleBtn.className = 'primary mb-4 w-full';
-                    toggleBtn.textContent = 'Add New Event';
-                    toggleBtn.onclick = toggleEventForm;
-                    dashboard.insertBefore(toggleBtn, eventForm);
-                }
-                // Only hide form on initial load if it's not being edited
-                if (!editingEventId && !eventForm.classList.contains('hidden-mobile')) {
-                    eventForm.classList.add('hidden-mobile');
-                }
-            } else {
-                // Remove toggle button if on desktop or not logged in
-                const toggleBtn = document.getElementById('toggleFormBtn');
-                if (toggleBtn) toggleBtn.remove();
-                eventForm.classList.remove('hidden-mobile');
-            }
+            // No longer need to add/remove mobile button
+            return;
         }
 
         // Add window resize listener with debounce
@@ -439,10 +466,8 @@
             } catch (error) {
                 return time24;
             }
-            
         }
 
-        // Authentication
         async function login() {
             const password = document.getElementById('password').value;
             if (!password) {
@@ -458,123 +483,113 @@
                     }
                 });
 
-                if (response.ok) {
-                    // Store auth in localStorage for persistence
-                    localStorage.setItem('auth', btoa(`admin:${password}`));
+            if (response.ok) {
+                // Store auth in localStorage for persistence
+                localStorage.setItem('auth', btoa(`admin:${password}`));
+                
+                // Get all required elements
+                const loginForm = document.getElementById('loginForm');
+                const dashboard = document.getElementById('dashboard');
+                const dashboardHeader = document.querySelector('.dashboard-header');
+                
+                // Ensure all elements exist before proceeding
+                if (loginForm && dashboard && dashboardHeader) {
                     // Hide login form
-                    document.getElementById('loginForm').classList.add('hidden');
-                    // Show dashboard and its elements
-                    document.getElementById('dashboard').classList.remove('hidden');
-                    document.querySelector('.dashboard-header').classList.remove('hidden');
-                    document.querySelector('.event-form-container').classList.remove('hidden');
+                    loginForm.classList.add('hidden');
+                    // Show dashboard and header
+                    dashboard.classList.remove('hidden');
+                    dashboardHeader.classList.remove('hidden');
+                    // Load events and initialize mobile view
                     await loadEvents();
-                    // Initialize mobile view after successful login
-                    setTimeout(checkMobileAndInit, 100); // Small delay to ensure DOM is updated
+                    setTimeout(checkMobileAndInit, 100);
                 } else {
-                    alert('Invalid password');
+                    throw new Error('Required DOM elements not found');
                 }
-            } catch (error) {
-                console.error('Login error:', error);
-                alert('Login failed. Please try again.');
-            }
-        }
-
-        async function handleSubmit(event) {
-            event.preventDefault();
-
-            const auth = localStorage.getItem('auth');
-            if (!auth) {
-                alert('Session expired. Please log in again.');
+            } else if (response.status === 401) {
+                // Session expired
+                sessionStorage.removeItem('auth');
                 document.getElementById('dashboard').classList.add('hidden');
                 document.getElementById('loginForm').classList.remove('hidden');
-                return;
+                // Load events and initialize mobile view
+                await loadEvents();
+                setTimeout(checkMobileAndInit, 100);
+            } else {
+                throw new Error('Required DOM elements not found');
             }
-
-            // Validate required fields
-            const title = document.getElementById('title').value.trim();
-            const date = document.getElementById('date').value.trim();
-            const time = document.getElementById('time').value.trim();
-            const location = document.getElementById('location').value.trim();
-            const description = document.getElementById('description').value.trim();
-            const calendly_link = document.getElementById('calendlyLink').value.trim();
-
-            if (!title || !date || !time || !location || !description || !calendly_link) {
-                alert('Please fill in all required fields');
-                return;
-            }
-
-            const formData = {
-                title,
-                date,
-                time: convertTo24Hour(time),
-                location,
-                description,
-                calendly_link
-            };
-
-            try {
-                const method = editingEventId ? 'PUT' : 'POST';
-                const url = editingEventId 
-                    ? `/.netlify/functions/admin-events?id=${editingEventId}`
-                    : '/.netlify/functions/admin-events';
-
-                const response = await fetch(url, {
-                    method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Basic ${auth}`
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    const isEditing = editingEventId !== null;
-                    
-                    // Always reload events to ensure consistency
-                    await loadEvents();
-
-                    // Reset form and editing state
-                    document.getElementById('eventForm').reset();
-                    editingEventId = null;
-
-                    // Show success message
-                    alert(isEditing ? 'Event updated successfully!' : 'Event added successfully!');
-                } else if (response.status === 401) {
-                    localStorage.removeItem('auth');
-                    document.getElementById('dashboard').classList.add('hidden');
-                    document.getElementById('loginForm').classList.remove('hidden');
-                    alert('Session expired. Please log in again.');
-                } else {
-                    const errorData = await response.json().catch(() => ({}));
-                    alert(errorData.error || 'Failed to save event');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while saving the event');
-            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('Login failed. Please try again.');
         }
+    }
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const auth = localStorage.getItem('auth');
+        if (!auth) {
+            alert('Session expired. Please log in again.');
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            return;
+        }
+
+        // Validate required fields
+        const title = document.getElementById('title').value.trim();
+        const date = document.getElementById('date').value.trim();
+        const time = document.getElementById('time').value.trim();
+        const location = document.getElementById('location').value.trim();
+        const description = document.getElementById('description').value.trim();
+        const calendly_link = document.getElementById('calendlyLink').value.trim();
+
+        if (!title || !date || !time || !location || !description || !calendly_link) {
+            alert('Please fill in all required fields');
+            return;
+        }
+
+        const formData = {
+            title,
+            date,
+            time: convertTo24Hour(time),
+            location,
+            description,
+            calendly_link
+        };
+
+        try {
+            const method = editingEventId ? 'PUT' : 'POST';
+            const url = editingEventId 
+                ? `/.netlify/functions/admin-events?id=${editingEventId}`
+                : '/.netlify/functions/admin-events';
+
+            const response = await fetch(url, {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${auth}`
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // Clear form and reset editing state
+                document.getElementById('eventForm').reset();
+                editingEventId = null;
+                // Refresh events list
+                await loadEvents();
+                // Close modal
+                closeModal();
+            } else {
+                throw new Error('Failed to save event');
+            }
+        } catch (error) {
+            console.error('Error saving event:', error);
+            alert('Failed to save event. Please try again.');
+        }
+    }
 
         async function editEvent(id) {
-            const auth = localStorage.getItem('auth');
-            if (!auth) {
-                alert('Session expired. Please log in again.');
-                document.getElementById('dashboard').classList.add('hidden');
-                document.getElementById('loginForm').classList.remove('hidden');
-                return;
-            }
             const event = events.find(e => e.id === id);
             if (event) {
-                // Show the form if it's hidden
-                const eventForm = document.querySelector('.event-form-container');
-                if (eventForm.classList.contains('hidden-mobile')) {
-                    eventForm.classList.remove('hidden-mobile');
-                    // Update toggle button text if it exists
-                    const toggleBtn = document.getElementById('toggleFormBtn');
-                    if (toggleBtn) {
-                        toggleBtn.textContent = 'Hide Form';
-                    }
-                }
-
                 // Fill in the form
                 editingEventId = id;
                 document.getElementById('title').value = event.title;
@@ -584,23 +599,25 @@
                 document.getElementById('description').value = event.description;
                 document.getElementById('calendlyLink').value = event.calendly_link;
 
-                // Scroll to form
-                eventForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Open modal in edit mode
+                openModal(true);
             }
         }
 
         function logout() {
             localStorage.removeItem('auth');
             // Hide dashboard and its elements
-            document.getElementById('dashboard').classList.add('hidden');
-            document.querySelector('.dashboard-header').classList.add('hidden');
-            document.querySelector('.event-form-container').classList.add('hidden');
-            // Show login form
-            document.getElementById('loginForm').classList.remove('hidden');
-            // Reset form and state
-            document.getElementById('eventForm').reset();
+            const dashboard = document.getElementById('dashboard');
+            const dashboardHeader = document.querySelector('.dashboard-header');
+            const loginForm = document.getElementById('loginForm');
+            const eventForm = document.getElementById('eventForm');
+
+            if (dashboard) dashboard.classList.add('hidden');
+            if (dashboardHeader) dashboardHeader.classList.add('hidden');
+            if (loginForm) loginForm.classList.remove('hidden');
+            if (eventForm) eventForm.reset();
+            
             editingEventId = null;
-            // Remove toggle button when logging out
             const toggleBtn = document.getElementById('toggleFormBtn');
             if (toggleBtn) toggleBtn.remove();
             events = [];
@@ -649,23 +666,48 @@
             });
         }
 
+        function isPastEvent(date) {
+            const eventDate = new Date(date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return eventDate < today;
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
         function displayEvents(events) {
             const eventsList = document.getElementById('eventsList');
-            eventsList.innerHTML = events.map(event => `
-                <div class="event-card rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <h3 class="text-2xl mb-2" style="font-family: 'JennaSue', cursive;">${event.title}</h3>
-                        <p class="text-gray-400">${event.date} at ${convertTo12Hour(event.time)}</p>
-                        <p class="text-gray-400">${event.location}</p>
-                        <p class="text-gray-300 mt-3">${event.description}</p>
-                        <p class="text-blue-400 mt-3"><a href="${event.calendly_link}" target="_blank" class="hover:text-blue-300 transition duration-300">Calendly Link →</a></p>
+            eventsList.innerHTML = '';
+
+            events.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = `bg-gray-800 p-6 rounded-lg shadow-lg relative group ${isPastEvent(event.date) ? 'past-event opacity-60' : ''}`;
+                eventCard.dataset.eventDate = event.date;
+
+                eventCard.innerHTML = `
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-2 font-jenna">${event.title}</h3>
+                        <p class="text-gray-400">${formatDate(event.date)} at ${convertTo12Hour(event.time)}</p>
+                        <p class="text-gray-400">@ ${event.location}</p>
+                        <p class="mt-4">${event.description}</p>
+                        <p class="text-blue-400 mt-2 cursor-pointer hover:text-blue-300 transition duration-300" onclick="window.open('${event.calendly_link}', '_blank')">RSVP →</p>
+                        <div class="absolute top-2 right-2 space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button onclick="editEvent('${event.id}')" class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700 text-sm">Edit</button>
+                            <button onclick="deleteEvent('${event.id}')" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm">Delete</button>
+                        </div>
                     </div>
-                    <div class="space-x-3 mt-6">
-                        <button onclick="editEvent('${event.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Edit</button>
-                        <button onclick="deleteEvent('${event.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">Delete</button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+
+                eventsList.appendChild(eventCard);
+            });
         }
 
         async function deleteEvent(eventId) {
