@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worthy Social - Admin Dashboard</title>
+    <title>Worthy Social Club - Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png">
+    <link rel="apple-touch-icon" href="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png">
     <link href="/dist/output.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <style>
@@ -52,10 +54,10 @@
     </div>
 
     <!-- Dashboard -->
-    <div id="dashboard" class="hidden container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-4xl font-bold mb-8" style="font-family: 'JennaSue', cursive;">E's Dashboard</h1>
-            <button onclick="logout()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300">Logout</button>
+    <div id="dashboard" class="container hidden">
+        <div class="header-actions">
+            <h1>Event Management</h1>
+            <button onclick="logout()" class="logout-btn">Logout</button>
         </div>
 
         <!-- Add Event Form -->
@@ -91,7 +93,7 @@
         </div>
 
         <!-- Events List -->
-        <div id="eventsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="eventsList" class="events-list">
             <!-- Events will be loaded here -->
         </div>
     </div>
@@ -106,10 +108,8 @@
             if (!time24) return '';
             
             // If already in 12-hour format, return as is
-            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) {
-                return time24;
-            }
-
+            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) return time24;
+            
             try {
                 const [hours24, minutes] = time24.split(':');
                 const hours = parseInt(hours24);
@@ -141,24 +141,6 @@
             } catch (error) {
                 return time12;
             }
-        }
-
-        function convertTo12Hour(time24) {
-            if (!time24) return '';
-            
-            // If already in 12-hour format, return as is
-            if (time24.toLowerCase().includes('am') || time24.toLowerCase().includes('pm')) return time24;
-            
-            try {
-                const [hours24, minutes] = time24.split(':');
-                const hours = parseInt(hours24);
-                const period = hours >= 12 ? 'PM' : 'AM';
-                const hours12 = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
-                return `${hours12}:${minutes} ${period}`;
-            } catch (error) {
-                return time24;
-            }
-            
         }
 
         // Authentication
@@ -353,17 +335,18 @@
         function displayEvents(events) {
             const eventsList = document.getElementById('eventsList');
             eventsList.innerHTML = events.map(event => `
-                <div class="event-card rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <h3 class="text-2xl mb-2" style="font-family: 'JennaSue', cursive;">${event.title}</h3>
-                        <p class="text-gray-400">${event.date} at ${convertTo12Hour(event.time)}</p>
-                        <p class="text-gray-400">${event.location}</p>
-                        <p class="text-gray-300 mt-3">${event.description}</p>
-                        <p class="text-blue-400 mt-3"><a href="${event.calendly_link}" target="_blank" class="hover:text-blue-300 transition duration-300">Calendly Link →</a></p>
+                <div class="event-item">
+                    <div class="event-content">
+                        <p><strong>Title:</strong> ${event.title}</p>
+                        <p><strong>Date:</strong> ${event.date}</p>
+                        <p><strong>Time:</strong> ${convertTo12Hour(event.time)}</p>
+                        <p><strong>Location:</strong> ${event.location}</p>
+                        <p><strong>Description:</strong> ${event.description}</p>
+                        <p><strong>Calendly:</strong> <a href="${event.calendly_link}" target="_blank" rel="noopener noreferrer">${new URL(event.calendly_link).pathname.split('/').pop()}</a></p>
                     </div>
-                    <div class="space-x-3 mt-6">
-                        <button onclick="editEvent('${event.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Edit</button>
-                        <button onclick="deleteEvent('${event.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">Delete</button>
+                    <div class="event-actions">
+                        <button onclick="editEvent('${event.id}')" class="edit-btn">Edit</button>
+                        <button onclick="deleteEvent('${event.id}')" class="delete-btn">Delete</button>
                     </div>
                 </div>
             `).join('');
