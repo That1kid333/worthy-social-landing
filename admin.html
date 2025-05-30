@@ -349,7 +349,10 @@
                     toggleBtn.onclick = toggleEventForm;
                     dashboard.insertBefore(toggleBtn, eventForm);
                 }
-                eventForm.classList.add('hidden-mobile');
+                // Only hide form on initial load if it's not being edited
+                if (!editingEventId && !eventForm.classList.contains('hidden-mobile')) {
+                    eventForm.classList.add('hidden-mobile');
+                }
             } else {
                 // Remove toggle button if on desktop or not logged in
                 const toggleBtn = document.getElementById('toggleFormBtn');
@@ -358,8 +361,26 @@
             }
         }
 
-        // Listen for window resize
-        window.addEventListener('resize', checkMobileAndInit);
+        // Add window resize listener with debounce
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const wasMobile = window.innerWidth <= 768;
+                checkMobileAndInit();
+                const isMobile = window.innerWidth <= 768;
+                
+                // Only reset form visibility if transitioning between mobile and desktop
+                if (wasMobile !== isMobile) {
+                    const eventForm = document.querySelector('.event-form-container');
+                    if (isMobile) {
+                        eventForm.classList.add('hidden-mobile');
+                    } else {
+                        eventForm.classList.remove('hidden-mobile');
+                    }
+                }
+            }, 250);
+        });
 
         // Time conversion utilities
         function convertTo12Hour(time24) {
