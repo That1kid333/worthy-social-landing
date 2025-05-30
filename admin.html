@@ -205,13 +205,26 @@
                 return;
             }
 
+            // Validate required fields
+            const title = document.getElementById('title').value.trim();
+            const date = document.getElementById('date').value.trim();
+            const time = document.getElementById('time').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const calendly_link = document.getElementById('calendlyLink').value.trim();
+
+            if (!title || !date || !time || !location || !description || !calendly_link) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
             const formData = {
-                title: document.getElementById('title').value,
-                date: document.getElementById('date').value,
-                time: convertTo24Hour(document.getElementById('time').value),
-                location: document.getElementById('location').value,
-                description: document.getElementById('description').value,
-                calendly_link: document.getElementById('calendlyLink').value
+                title,
+                date,
+                time: convertTo24Hour(time),
+                location,
+                description,
+                calendly_link
             };
 
             try {
@@ -235,7 +248,7 @@
                     // Always reload events to ensure consistency
                     await loadEvents();
 
-                    // Reset form
+                    // Reset form and editing state
                     document.getElementById('eventForm').reset();
                     editingEventId = null;
 
@@ -247,11 +260,12 @@
                     document.getElementById('loginForm').classList.remove('hidden');
                     alert('Session expired. Please log in again.');
                 } else {
-                    alert('Failed to save event');
+                    const errorData = await response.json().catch(() => ({}));
+                    alert(errorData.error || 'Failed to save event');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred');
+                alert('An error occurred while saving the event');
             }
         }
 

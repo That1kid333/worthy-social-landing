@@ -227,15 +227,34 @@ exports.handler = async function(event, context) {
         };
 
       case 'PUT':
+        const eventId = event.queryStringParameters?.id;
+        if (!eventId) {
+          return {
+            statusCode: 400,
+            body: JSON.stringify({ error: 'Missing event ID' })
+          };
+        }
+
         const updatedEvent = JSON.parse(event.body);
         const { data: updated, error: updateError } = await supabase
           .from('events')
-          .update(updatedEvent)
-          .eq('id', updatedEvent.id)
+          .update({
+            title: updatedEvent.title,
+            date: updatedEvent.date,
+            time: updatedEvent.time,
+            location: updatedEvent.location,
+            description: updatedEvent.description,
+            calendly_link: updatedEvent.calendly_link,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', eventId)
           .select()
           .single();
 
-        if (updateError) throw updateError;
+        if (updateError) {
+          console.error('Update error:', updateError);
+          throw updateError;
+        }
         if (!updated) {
           return { statusCode: 404, body: JSON.stringify({ error: 'Event not found' }) };
         }
