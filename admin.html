@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://social.worthypros.com; img-src 'self' https://worthysocialclub.blob.core.windows.net data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: fonts.gstatic.com http://localhost:8888; script-src 'self' 'unsafe-inline';">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'JennaSue';
+            src: url('/fonts/JennaSue.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        .font-jenna {
+            font-family: 'JennaSue', cursive;
+        }
+    </style>
     <title>Worthy Social Club - Admin Dashboard</title>
     <link rel="icon" type="image/png" href="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png">
     <link rel="apple-touch-icon" href="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png">
@@ -17,7 +30,7 @@
             color: white;
             margin: 0;
             padding: 20px;
-            font-family: Arial, sans-serif;
+            font-family: 'Josefin Sans', sans-serif;
         }
 
         .container {
@@ -138,7 +151,23 @@
         }
 
         /* Mobile styles */
+        /* Logo styles */
+        .logo-container img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Mobile-specific form styles */
         @media (max-width: 768px) {
+            .event-form-container {
+                margin: -10px;
+                border-radius: 0;
+                padding: 15px;
+            }
+
+            .event-form-container.hidden-mobile {
+                display: none;
+            }
             body {
                 padding: 10px;
             }
@@ -187,6 +216,12 @@
                 margin: 0;
             }
 
+            /* Logo mobile size */
+            .logo-container img {
+                max-width: 200px;
+                margin: 10px auto;
+            }
+
             /* Login form */
             #loginForm {
                 padding: 20px;
@@ -219,11 +254,13 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Login Form -->
-    <div id="loginForm" class="min-h-screen flex flex-col items-center justify-center bg-gray-900">
-        <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/worthysocialclublogo_enlarged.png" alt="Worthy Social Club Logo" class="mb-8 w-64">
-        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Admin Login</h2>
+    <div class="container mx-auto px-4">
+        <!-- Login Form -->
+        <div id="loginForm" class="max-w-md mx-auto mt-10 p-6 bg-gray-800 rounded-lg shadow-lg">
+            <div class="logo-container text-center mb-8">
+                <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" alt="Worthy Social Club Logo" class="mx-auto mb-4">
+            </div>
+            <h2 class="text-3xl mb-6 font-jenna">Admin Login</h2>
             <div class="mb-6">
                 <label class="block text-gray-300 mb-2" for="password">Password</label>
                 <input type="password" id="password" class="w-full px-4 py-3 rounded-lg bg-opacity-50">
@@ -234,14 +271,13 @@
 
     <!-- Dashboard -->
     <div id="dashboard" class="hidden container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-4xl font-bold mb-8" style="font-family: 'JennaSue', cursive;">E's Dashboard</h1>
+        <div class="dashboard-header flex justify-between items-center mb-8 hidden">
+            <h1 class="text-4xl font-bold font-jenna">E's Dashboard</h1>
             <button onclick="logout()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300">Logout</button>
         </div>
 
-        <!-- Add Event Form -->
-        <div class="admin-card rounded-lg shadow-lg p-8 mb-8">
-            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Add New Event</h2>
+        <div class="event-form-container bg-gray-800 p-6 rounded-lg shadow-lg mb-8 hidden">
+            <h2 class="text-2xl font-bold mb-4">Add/Edit Event</h2>
             <form id="eventForm" onsubmit="handleSubmit(event)" class="space-y-6">
                 <div>
                     <label class="block text-gray-300 mb-2" for="title">Title</label>
@@ -278,9 +314,52 @@
     </div>
 
     <script>
-        // State management
-        let events = [];
         let editingEventId = null;
+        let events = [];
+
+        function toggleEventForm() {
+            const eventForm = document.querySelector('.event-form-container');
+            const isHidden = eventForm.classList.contains('hidden-mobile');
+            
+            if (isHidden) {
+                eventForm.classList.remove('hidden-mobile');
+                eventForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                eventForm.classList.add('hidden-mobile');
+            }
+            
+            // Update button text
+            const toggleBtn = document.getElementById('toggleFormBtn');
+            toggleBtn.textContent = isHidden ? 'Hide Form' : 'Add New Event';
+        }
+
+        function checkMobileAndInit() {
+            const isMobile = window.innerWidth <= 768;
+            const eventForm = document.querySelector('.event-form-container');
+            const dashboard = document.getElementById('dashboard');
+            const isLoggedIn = dashboard && !dashboard.classList.contains('hidden');
+            
+            if (isMobile && isLoggedIn) {
+                // Add toggle button if it doesn't exist
+                if (!document.getElementById('toggleFormBtn')) {
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.id = 'toggleFormBtn';
+                    toggleBtn.className = 'primary mb-4 w-full';
+                    toggleBtn.textContent = 'Add New Event';
+                    toggleBtn.onclick = toggleEventForm;
+                    dashboard.insertBefore(toggleBtn, eventForm);
+                }
+                eventForm.classList.add('hidden-mobile');
+            } else {
+                // Remove toggle button if on desktop or not logged in
+                const toggleBtn = document.getElementById('toggleFormBtn');
+                if (toggleBtn) toggleBtn.remove();
+                eventForm.classList.remove('hidden-mobile');
+            }
+        }
+
+        // Listen for window resize
+        window.addEventListener('resize', checkMobileAndInit);
 
         // Time conversion utilities
         function convertTo12Hour(time24) {
@@ -361,11 +440,15 @@
                 if (response.ok) {
                     // Store auth in localStorage for persistence
                     localStorage.setItem('auth', btoa(`admin:${password}`));
-                    // Show dashboard
+                    // Hide login form
                     document.getElementById('loginForm').classList.add('hidden');
+                    // Show dashboard and its elements
                     document.getElementById('dashboard').classList.remove('hidden');
-                    // Load events
-                    loadEvents();
+                    document.querySelector('.dashboard-header').classList.remove('hidden');
+                    document.querySelector('.event-form-container').classList.remove('hidden');
+                    await loadEvents();
+                    // Initialize mobile view after successful login
+                    setTimeout(checkMobileAndInit, 100); // Small delay to ensure DOM is updated
                 } else {
                     alert('Invalid password');
                 }
@@ -458,33 +541,47 @@
                 document.getElementById('loginForm').classList.remove('hidden');
                 return;
             }
-
-            // Find the event in our local events array
             const event = events.find(e => e.id === id);
-            if (!event) {
-                alert('Event not found');
-                return;
+            if (event) {
+                // Show the form if it's hidden
+                const eventForm = document.querySelector('.event-form-container');
+                if (eventForm.classList.contains('hidden-mobile')) {
+                    eventForm.classList.remove('hidden-mobile');
+                    // Update toggle button text if it exists
+                    const toggleBtn = document.getElementById('toggleFormBtn');
+                    if (toggleBtn) {
+                        toggleBtn.textContent = 'Hide Form';
+                    }
+                }
+
+                // Fill in the form
+                editingEventId = id;
+                document.getElementById('title').value = event.title;
+                document.getElementById('date').value = event.date;
+                document.getElementById('time').value = event.time;
+                document.getElementById('location').value = event.location;
+                document.getElementById('description').value = event.description;
+                document.getElementById('calendlyLink').value = event.calendly_link;
+
+                // Scroll to form
+                eventForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-
-            // Set the editing state
-            editingEventId = id;
-
-            // Populate the form
-            document.getElementById('title').value = event.title;
-            document.getElementById('date').value = event.date;
-            document.getElementById('time').value = convertTo12Hour(event.time);
-            document.getElementById('location').value = event.location;
-            document.getElementById('description').value = event.description;
-            document.getElementById('calendlyLink').value = event.calendly_link;
-
-            // Scroll to the form
-            document.getElementById('eventForm').scrollIntoView({ behavior: 'smooth' });
         }
 
         function logout() {
             localStorage.removeItem('auth');
+            // Hide dashboard and its elements
             document.getElementById('dashboard').classList.add('hidden');
+            document.querySelector('.dashboard-header').classList.add('hidden');
+            document.querySelector('.event-form-container').classList.add('hidden');
+            // Show login form
             document.getElementById('loginForm').classList.remove('hidden');
+            // Reset form and state
+            document.getElementById('eventForm').reset();
+            editingEventId = null;
+            // Remove toggle button when logging out
+            const toggleBtn = document.getElementById('toggleFormBtn');
+            if (toggleBtn) toggleBtn.remove();
             events = [];
             displayEvents(events);
         }
