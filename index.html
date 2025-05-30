@@ -414,7 +414,7 @@
 
                     async function loadEvents() {
                         try {
-                            const response = await fetch('/api/public/events');
+                            const response = await fetch('/.netlify/functions/events');
                             if (!response.ok) throw new Error('Failed to load events');
                             const events = await response.json();
                             const eventsGrid = document.getElementById('events-grid');
@@ -423,17 +423,23 @@
                             eventsGrid.innerHTML = sortedEvents.map(event => {
                                 const eventDate = new Date(event.date);
                                 const formattedDate = eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                                const isPast = isPastEvent(event.date);
                                 
                                 return `
-                                    <div class="event-card group ${isPastEvent(event.date) ? 'past-event' : ''}" data-event-date="${event.date}">
+                                    <div 
+                                        class="event-card group ${isPast ? 'past-event' : 'hover:scale-105'} transition-transform duration-300" 
+                                        data-event-date="${event.date}"
+                                        ${!isPast ? `onclick="window.open('${event.calendly_link}', '_blank')"` : ''}
+                                        style="cursor: ${isPast ? 'default' : 'pointer'};"
+                                    >
                                         <div>
                                             <h4 style="font-family: 'JennaSue', cursive;">${formattedDate}: ${event.title}</h4>
                                             <p class="event-description text-white">${event.description}</p>
                                         </div>
                                         <div>
                                             <p class="event-meta text-gray-500">${event.time} @ ${event.location}</p>
-                                            ${!isPastEvent(event.date) ? 
-                                                `<p class="text-blue-400 mt-2 cursor-pointer hover:text-blue-300 transition duration-300" onclick="window.open('${event.calendlyLink}', '_blank')">RSVP →</p>` : ''
+                                            ${!isPast ? 
+                                                `<p class="text-blue-400 mt-2 hover:text-blue-300 transition duration-300">RSVP →</p>` : ''
                                             }
                                         </div>
                                     </div>
