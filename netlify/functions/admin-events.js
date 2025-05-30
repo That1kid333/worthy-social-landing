@@ -6,6 +6,51 @@ const ADMIN_PASSWORD_HASH = '$2a$10$' + bcrypt.hashSync('Worthy2025!', 10).slice
 // Original events data to restore
 const eventsToRestore = [
   {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "title": "Valentine's Day Wine Tasting",
+    "date": "2025-02-14",
+    "time": "19:00",
+    "location": "Le Bilboquet",
+    "description": "Join us for a romantic evening of wine tasting",
+    "calendly_link": "https://calendly.com/elizabeth-myworthyevent-j_0a/valentine-s-day-wine-tasting"
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000002",
+    "title": "St. Patrick's Day Celebration",
+    "date": "2025-03-17",
+    "time": "17:00",
+    "location": "Fado Irish Pub",
+    "description": "Celebrate St. Patrick's Day with traditional Irish fare and music",
+    "calendly_link": "https://calendly.com/elizabeth-myworthyevent-j_0a/st-patricks-day-celebration"
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000003",
+    "title": "Spring Equinox Yoga",
+    "date": "2025-03-20",
+    "time": "06:30",
+    "location": "Piedmont Park",
+    "description": "Welcome the spring with sunrise yoga in the park",
+    "calendly_link": "https://calendly.com/elizabeth-myworthyevent-j_0a/spring-equinox-yoga"
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000004",
+    "title": "Easter Brunch",
+    "date": "2025-04-20",
+    "time": "11:00",
+    "location": "Garden Room",
+    "description": "Elegant Easter brunch with panoramic views",
+    "calendly_link": "https://calendly.com/elizabeth-myworthyevent-j_0a/easter-brunch"
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000005",
+    "title": "Mother's Day Tea",
+    "date": "2025-05-11",
+    "time": "14:00",
+    "location": "St. Regis Atlanta",
+    "description": "Celebrate Mother's Day with high tea and champagne",
+    "calendly_link": "https://calendly.com/elizabeth-myworthyevent-j_0a/mothers-day-tea"
+  },
+  {
     "id": "00000000-0000-4000-8000-000000000006",
     "title": "Family Dinner",
     "date": "2025-03-30",
@@ -115,7 +160,15 @@ exports.handler = async function(event, context) {
     switch (event.httpMethod) {
       case 'POST':
         if (event.path === '/.netlify/functions/admin-events/restore') {
-          // Bulk insert all events
+          // First, delete all existing events
+          const { error: deleteError } = await supabase
+            .from('events')
+            .delete()
+            .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all events
+
+          if (deleteError) throw deleteError;
+
+          // Then insert all events
           const { data: insertedEvents, error } = await supabase
             .from('events')
             .insert(eventsToRestore);
