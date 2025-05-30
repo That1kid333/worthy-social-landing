@@ -99,6 +99,39 @@
     <script>
         // State management
         let events = [];
+
+        // Authentication
+        async function login() {
+            const password = document.getElementById('password').value;
+            if (!password) {
+                alert('Please enter a password');
+                return;
+            }
+
+            try {
+                const response = await fetch('/.netlify/functions/admin-events', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Basic ${btoa(`admin:${password}`)}`
+                    }
+                });
+
+                if (response.ok) {
+                    // Store auth in session
+                    sessionStorage.setItem('auth', btoa(`admin:${password}`));
+                    // Show dashboard
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('dashboard').classList.remove('hidden');
+                    // Load events
+                    loadEvents();
+                } else {
+                    alert('Invalid password');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
+            }
+        }
         let editingEventId = null;
 
         // Authentication
