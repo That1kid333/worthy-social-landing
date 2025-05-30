@@ -333,29 +333,28 @@
 
                 const response = await fetch(`/.netlify/functions/admin-events?id=${eventId}`, {
                     method: 'DELETE',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Basic ${auth}`
+                    headers: {
+                        'Authorization': `Basic ${auth}`,
+                        'Content-Type': 'application/json'
                     }
                 });
 
                 if (response.ok) {
-                    // Update the events list without reloading
-                    events = events.filter(event => event.id !== eventId);
-                    displayEvents(events);
-                    alert('Event deleted successfully!');
+                    // Reload events to ensure consistency
+                    await loadEvents();
+                    alert('Event deleted successfully');
                 } else if (response.status === 401) {
-                    // Handle unauthorized properly
-                    sessionStorage.removeItem('auth');
+                    localStorage.removeItem('auth');
                     document.getElementById('dashboard').classList.add('hidden');
                     document.getElementById('loginForm').classList.remove('hidden');
                     alert('Session expired. Please log in again.');
                 } else {
-                    alert('Failed to delete event');
+                    const errorData = await response.json();
+                    alert(errorData.error || 'Failed to delete event');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred');
+                alert('An error occurred while deleting the event');
             }
         }
 

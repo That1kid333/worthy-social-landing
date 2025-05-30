@@ -246,7 +246,14 @@ exports.handler = async function(event, context) {
         };
 
       case 'DELETE':
-        const { id } = JSON.parse(event.body);
+        const id = event.queryStringParameters?.id;
+        if (!id) {
+          return {
+            statusCode: 400,
+            body: JSON.stringify({ error: 'Missing event ID' })
+          };
+        }
+
         const { error: deleteError } = await supabase
           .from('events')
           .delete()
