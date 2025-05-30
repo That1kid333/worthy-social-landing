@@ -11,8 +11,13 @@
     <style>
         .hidden { display: none; }
         body {
-            background-color: #343434;
-            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1f2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         input, textarea {
             background-color: #444;
@@ -41,16 +46,13 @@
 </head>
 <body class="min-h-screen">
     <!-- Login Form -->
-    <div id="loginForm" class="min-h-screen flex flex-col items-center justify-center bg-gray-900">
-        <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/worthysocialclublogo_enlarged.png" alt="Worthy Social Club Logo" class="mb-8 w-64">
-        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-            <h2 class="text-3xl mb-6" style="font-family: 'JennaSue', cursive;">Admin Login</h2>
-            <div class="mb-6">
-                <label class="block text-gray-300 mb-2" for="password">Password</label>
-                <input type="password" id="password" class="w-full px-4 py-3 rounded-lg bg-opacity-50">
-            </div>
-            <button onclick="login()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">Login</button>
+    <div id="loginForm" class="hidden">
+        <div class="logo-container">
+            <img src="https://worthysocialclub.blob.core.windows.net/worthysocialclub/Worthy%20Social%20Logos%20(8).png" alt="Worthy Social Club Logo">
         </div>
+        <h2>Admin Dashboard</h2>
+        <input type="password" id="password" placeholder="Enter password" required>
+        <button onclick="login()">Login</button>
     </div>
 
     <!-- Dashboard -->
@@ -147,32 +149,30 @@
         async function login() {
             const password = document.getElementById('password').value;
             if (!password) {
-                alert('Please enter a password');
+                alert('Please enter password');
                 return;
             }
 
             try {
                 const response = await fetch('/.netlify/functions/admin-events', {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
-                        'Authorization': `Basic ${btoa(`admin:${password}`)}`
-                    }
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${btoa(password)}`
+                    },
+                    body: JSON.stringify({ action: 'verify' })
                 });
 
                 if (response.ok) {
-                    // Store auth in localStorage for persistence
-                    localStorage.setItem('auth', btoa(`admin:${password}`));
-                    // Show dashboard
-                    document.getElementById('loginForm').classList.add('hidden');
-                    document.getElementById('dashboard').classList.remove('hidden');
-                    // Load events
+                    localStorage.setItem('auth', btoa(password));
+                    showDashboard();
                     loadEvents();
                 } else {
                     alert('Invalid password');
                 }
             } catch (error) {
-                console.error('Login error:', error);
-                alert('Login failed. Please try again.');
+                console.error('Error:', error);
+                alert('An error occurred');
             }
         }
 
@@ -251,43 +251,21 @@
             }
         }
 
-        async function editEvent(id) {
-            const auth = localStorage.getItem('auth');
-            if (!auth) {
-                alert('Session expired. Please log in again.');
-                document.getElementById('dashboard').classList.add('hidden');
-                document.getElementById('loginForm').classList.remove('hidden');
-                return;
-            }
+        function showDashboard() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            document.getElementById('eventForm').classList.remove('hidden');
+        }
 
-            // Find the event in our local events array
-            const event = events.find(e => e.id === id);
-            if (!event) {
-                alert('Event not found');
-                return;
-            }
-
-            // Set the editing state
-            editingEventId = id;
-
-            // Populate the form
-            document.getElementById('title').value = event.title;
-            document.getElementById('date').value = event.date;
-            document.getElementById('time').value = convertTo12Hour(event.time);
-            document.getElementById('location').value = event.location;
-            document.getElementById('description').value = event.description;
-            document.getElementById('calendlyLink').value = event.calendly_link;
-
-            // Scroll to the form
-            document.getElementById('eventForm').scrollIntoView({ behavior: 'smooth' });
+        function showLoginForm() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('eventForm').classList.add('hidden');
         }
 
         function logout() {
             localStorage.removeItem('auth');
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            events = [];
-            displayEvents(events);
+            showLoginForm();
         }
 
         // Events management
@@ -308,7 +286,7 @@
 
                 if (response.status === 401) {
                     // Session expired
-                    sessionStorage.removeItem('auth');
+                    localStorage.removeItem('auth');
                     document.getElementById('dashboard').classList.add('hidden');
                     document.getElementById('loginForm').classList.remove('hidden');
                     alert('Session expired. Please log in again.');
