@@ -549,7 +549,7 @@
         const formData = {
             title,
             date,
-            time: convertTo24Hour(time),
+            time: time, // Time input is already in 24h format
             location,
             description,
             calendly_link
@@ -594,7 +594,7 @@
                 editingEventId = id;
                 document.getElementById('title').value = event.title;
                 document.getElementById('date').value = event.date;
-                document.getElementById('time').value = event.time;
+                document.getElementById('time').value = event.time; // Time is already in 24h format for the input
                 document.getElementById('location').value = event.location;
                 document.getElementById('description').value = event.description;
                 document.getElementById('calendlyLink').value = event.calendly_link;
